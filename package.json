@@ -1,0 +1,38 @@
+{
+  "name": "cybermancy2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel serve src/index.html --out-dir docs",
+    "local": "parcel serve src/index.html --host 192.168.20.24 --https --out-dir docs",
+    "build": "parcel build src/index.html --out-dir docs",
+    "postbuild": "ncp ./static ./docs --filter '**/*.*'",
+    "gh": "npm run build -- --public-url=./",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/runtime": "^7.9.6",
+    "@tensorflow-models/handpose": "0.0.3",
+    "@tensorflow/tfjs-converter": "^1.7.4",
+    "@tensorflow/tfjs-core": "^1.7.4",
+    "comlink": "^4.3.0",
+    "face-api.js": "^0.22.2",
+    "postprocessing": "^6.14.0",
+    "regenerator-runtime": "^0.13.5",
+    "stats.js": "^0.17.0",
+    "three": "^0.116.1",
+    "three-text2d": "^0.6.0",
+    "uuid": "^8.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/plugin-transform-runtime": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "cssnano": "^4.1.10",
+    "ncp": "2.0.0",
+    "sass": "^1.26.5"
+  }
+}
