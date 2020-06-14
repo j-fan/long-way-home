@@ -17,18 +17,13 @@ const createScene = function () {
   camera.attachControl(canvas, true);
 
   // Environment Texture
-  var hdrTexture = new BABYLON.HDRCubeTexture(
-    "./img/royal_esplanade_1k.hdr",
-    scene,
-    128,
-    false,
-    true,
-    false,
-    true
+  var hdrTexture = new BABYLON.CubeTexture.CreateFromPrefilteredData(
+    "img/nightEnvSpecularHDR.dds",
+    scene
   );
-
-  scene.imageProcessingConfiguration.exposure = 0.6;
-  scene.imageProcessingConfiguration.contrast = 1.6;
+  scene.imageProcessingConfiguration.exposure = 0.1;
+  scene.imageProcessingConfiguration.contrast = 1.0;
+  scene.environmentTexture = hdrTexture;
 
   // Skybox
   var hdrSkybox = BABYLON.Mesh.CreateBox("hdrSkyBox", 1000.0, scene);

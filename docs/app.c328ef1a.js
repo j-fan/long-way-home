@@ -931,9 +931,10 @@ var createScene = function createScene() {
   var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, new BABYLON.Vector3(0, 0, 5), scene);
   camera.attachControl(canvas, true); // Environment Texture
 
-  var hdrTexture = new BABYLON.HDRCubeTexture("./img/royal_esplanade_1k.hdr", scene, 128, false, true, false, true);
-  scene.imageProcessingConfiguration.exposure = 0.6;
-  scene.imageProcessingConfiguration.contrast = 1.6; // Skybox
+  var hdrTexture = new BABYLON.CubeTexture.CreateFromPrefilteredData("img/nightEnvSpecularHDR.dds", scene);
+  scene.imageProcessingConfiguration.exposure = 0.1;
+  scene.imageProcessingConfiguration.contrast = 1.0;
+  scene.environmentTexture = hdrTexture; // Skybox
 
   var hdrSkybox = BABYLON.Mesh.CreateBox("hdrSkyBox", 1000.0, scene);
   var hdrSkyboxMaterial = new BABYLON.PBRMaterial("skyBox", scene);
@@ -1112,7 +1113,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58183" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58390" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
