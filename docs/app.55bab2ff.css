@@ -8,4 +8,9 @@ body {
   font-family: Helvetica, Arial, sans-serif;
 }
 
+#renderCanvas {
+  width: 100vw;
+  height: 100vh;
+}
+
 /*# sourceMappingURL=/app.55bab2ff.css.map */
