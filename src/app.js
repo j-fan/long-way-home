@@ -1,8 +1,8 @@
-import initThreeCanvas from "./mainCanvas";
+import { initBabylonCanvas } from "./mainCanvas";
 import "./app.scss";
 
 const initAll = async () => {
-  await initThreeCanvas();
+  initBabylonCanvas();
 };
 
 initAll();

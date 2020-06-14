@@ -1,172 +1,81 @@
-import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
-import {
-  EffectComposer,
-  EffectPass,
-  RenderPass,
-  BloomEffect,
-  BlendFunction,
-  ChromaticAberrationEffect,
-  KernelSize,
-  ScanlineEffect,
-  GlitchEffect,
-} from "postprocessing";
+import * as BABYLON from "babylonjs";
 
-const initThreeCanvas = async () => {
-  let scene;
-  let camera;
-  let renderer;
-  let clock = new THREE.Clock();
-  const gltfLoader = new GLTFLoader();
-  let gltfObjs = [];
-  let composer;
+const canvas = document.getElementById("renderCanvas"); // Get the canvas element
+const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
 
-  const addPostProcessing = () => {
-    composer = new EffectComposer(renderer);
+const createScene = function () {
+  const scene = new BABYLON.Scene(engine);
 
-    const bloomEffect = new BloomEffect({
-      blendFunction: BlendFunction.SCREEN,
-      kernelSize: KernelSize.LARGE,
-      luminanceThreshold: 0.25,
-      intensity: 1,
-    });
-    bloomEffect.blendMode.opacity.value = 1.0;
+  const camera = new BABYLON.ArcRotateCamera(
+    "Camera",
+    Math.PI / 2,
+    Math.PI / 2,
+    2,
+    new BABYLON.Vector3(0, 0, 5),
+    scene
+  );
+  camera.attachControl(canvas, true);
 
-    const chromaticAbberationEffect = new ChromaticAberrationEffect({
-      offset: new THREE.Vector2(-0.002, 0),
-      blendFunction: BlendFunction.ADD,
-    });
-    chromaticAbberationEffect.blendMode.opacity.value = 0.8;
+  // Environment Texture
+  var hdrTexture = new BABYLON.HDRCubeTexture(
+    "./img/royal_esplanade_1k.hdr",
+    scene,
+    128,
+    false,
+    true,
+    false,
+    true
+  );
 
-    const scanLineEffect = new ScanlineEffect({
-      blendFunction: BlendFunction.MULTIPLY,
-      density: 2,
-    });
-    scanLineEffect.blendMode.opacity.value = 0.2;
+  scene.imageProcessingConfiguration.exposure = 0.6;
+  scene.imageProcessingConfiguration.contrast = 1.6;
 
-    const glitchEffect = new GlitchEffect({
-      delay: new THREE.Vector2(4, 8),
-      duration: new THREE.Vector2(0.3, 0.6),
-      strength: new THREE.Vector2(0.05, 0),
-      columns: 0.0001,
-    });
+  // Skybox
+  var hdrSkybox = BABYLON.Mesh.CreateBox("hdrSkyBox", 1000.0, scene);
+  var hdrSkyboxMaterial = new BABYLON.PBRMaterial("skyBox", scene);
+  hdrSkyboxMaterial.backFaceCulling = false;
+  hdrSkyboxMaterial.reflectionTexture = hdrTexture.clone();
+  hdrSkyboxMaterial.reflectionTexture.coordinatesMode =
+    BABYLON.Texture.SKYBOX_MODE;
+  hdrSkyboxMaterial.microSurface = 1.0;
+  hdrSkyboxMaterial.disableLighting = true;
+  hdrSkybox.material = hdrSkyboxMaterial;
+  hdrSkybox.infiniteDistance = true;
 
-    composer.addPass(new RenderPass(scene, camera));
-    composer.addPass(new EffectPass(camera, chromaticAbberationEffect));
-    composer.addPass(new EffectPass(camera, bloomEffect));
-    composer.addPass(new EffectPass(camera, scanLineEffect));
-    composer.addPass(new EffectPass(camera, glitchEffect));
-  };
+  const sphere = BABYLON.MeshBuilder.CreateSphere(
+    "sphere",
+    { diameter: 2 },
+    scene
+  );
+  var plastic = new BABYLON.PBRMaterial("plastic", scene);
+  plastic.reflectionTexture = hdrTexture;
+  plastic.microSurface = 0.96;
+  plastic.albedoColor = new BABYLON.Color3(0.206, 0.94, 1);
+  plastic.reflectivityColor = new BABYLON.Color3(0.003, 0.003, 0.003);
+  sphere.material = plastic;
 
-  const loadGltf = async (filePath) => {
-    const gltf = await gltfLoader.loadAsync(filePath);
-    const mixer = new THREE.AnimationMixer(gltf.scene);
-    for (const anim of gltf.animations) {
-      mixer.clipAction(anim).play();
-    }
-    gltfObjs.push({ gltf, mixer });
-    scene.add(gltf.scene);
-  };
+  // const light1 = new BABYLON.HemisphericLight(
+  //   "light1",
+  //   new BABYLON.Vector3(1, 1, 0),
+  //   scene
+  // );
+  // const light2 = new BABYLON.PointLight(
+  //   "light2",
+  //   new BABYLON.Vector3(0, 1, -1),
+  //   scene
+  // );
 
-  const resizeCanvasToDisplaySize = () => {
-    const canvas = renderer.domElement;
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    if (canvas.width !== width || canvas.height !== height) {
-      renderer.setSize(width, height, false);
-      camera.aspect = width / height;
-      camera.updateProjectionMatrix();
-      canvas.width = width;
-      canvas.height = height;
-      canvas.style.width = `${width}px`;
-      canvas.style.height = `${height}px`;
-    }
-  };
-
-  const initScene = () => {
-    scene = new THREE.Scene();
-    let pmremGenerator = new THREE.PMREMGenerator(renderer);
-
-    new RGBELoader()
-      .setDataType(THREE.UnsignedByteType)
-      .load("img/royal_esplanade_1k.hdr", (hdrEquirect) => {
-        let hdrCubeRenderTarget = pmremGenerator.fromEquirectangular(
-          hdrEquirect
-        );
-        hdrEquirect.dispose();
-        pmremGenerator.dispose();
-
-        scene.background = hdrCubeRenderTarget.texture;
-        scene.environment = hdrCubeRenderTarget.texture;
-      });
-
-    pmremGenerator.compileEquirectangularShader();
-  };
-
-  const addLights = () => {
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1, 100);
-    directionalLight.position.set(0, 5, 10);
-    scene.add(directionalLight);
-    directionalLight.castShadow = true;
-    directionalLight.castShadow = true;
-    directionalLight.shadow.mapSize.height = 256;
-    directionalLight.shadow.mapSize.width = 256;
-    directionalLight.shadow.camera = new THREE.OrthographicCamera(
-      -6,
-      6,
-      6,
-      -6,
-      8,
-      20
-    );
-    // const cameraHelper = new THREE.CameraHelper(directionalLight.shadow.camera);
-    // scene.add(cameraHelper);
-  };
-
-  const addCamera = () => {
-    camera = new THREE.PerspectiveCamera(
-      65,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    );
-    camera.position.set(0, 0, 10);
-    camera.rotation.z = Math.PI;
-  };
-
-  const initAndAttachCanvas = () => {
-    const selfHtmlNode = document.getElementById("mainCanvas");
-    renderer = new THREE.WebGLRenderer({ alpha: false, antialias: true });
-    selfHtmlNode.appendChild(renderer.domElement);
-    renderer.setSize(selfHtmlNode.clientWidth, selfHtmlNode.clientHeight);
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    // renderer.setClearColor(0x000000, 0.3);
-    window.addEventListener("resize", () => {
-      resizeCanvasToDisplaySize();
-    });
-  };
-
-  initAndAttachCanvas();
-  initScene();
-  addCamera();
-  addLights();
-  await loadGltf("resources/origin.glb");
-  resizeCanvasToDisplaySize();
-  addPostProcessing();
-
-  const animate = async () => {
-    composer.render(clock.getDelta());
-    // renderer.render(scene, camera);
-
-    gltfObjs.forEach((obj) => {
-      obj.mixer.update(clock.getDelta());
-    });
-
-    requestAnimationFrame(animate);
-  };
-  animate();
+  return scene;
 };
 
-export default initThreeCanvas;
+const initBabylonCanvas = () => {
+  const scene = createScene();
+  engine.runRenderLoop(function () {
+    scene.render();
+  });
+  window.addEventListener("resize", function () {
+    engine.resize();
+  });
+};
+
+export { initBabylonCanvas };
