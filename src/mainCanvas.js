@@ -1,4 +1,5 @@
 import * as BABYLON from "babylonjs";
+import "babylonjs-loaders";
 
 const canvas = document.getElementById("renderCanvas"); // Get the canvas element
 const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
@@ -11,7 +12,7 @@ const createScene = function () {
     Math.PI / 2,
     Math.PI / 2,
     2,
-    new BABYLON.Vector3(0, 0, 5),
+    new BABYLON.Vector3(0, 0, 0),
     scene
   );
   camera.attachControl(canvas, true);
@@ -37,17 +38,22 @@ const createScene = function () {
   hdrSkybox.material = hdrSkyboxMaterial;
   hdrSkybox.infiniteDistance = true;
 
-  const sphere = BABYLON.MeshBuilder.CreateSphere(
-    "sphere",
-    { diameter: 2 },
-    scene
-  );
-  var plastic = new BABYLON.PBRMaterial("plastic", scene);
-  plastic.reflectionTexture = hdrTexture;
-  plastic.microSurface = 0.96;
-  plastic.albedoColor = new BABYLON.Color3(0.206, 0.94, 1);
-  plastic.reflectivityColor = new BABYLON.Color3(0.003, 0.003, 0.003);
-  sphere.material = plastic;
+  // const sphere = BABYLON.MeshBuilder.CreateSphere(
+  //   "sphere",
+  //   { diameter: 2 },
+  //   scene
+  // );
+  // var plastic = new BABYLON.PBRMaterial("plastic", scene);
+  // plastic.reflectionTexture = hdrTexture;
+  // plastic.microSurface = 0.96;
+  // plastic.albedoColor = new BABYLON.Color3(0.206, 0.94, 1);
+  // plastic.reflectivityColor = new BABYLON.Color3(0.003, 0.003, 0.003);
+  // sphere.material = plastic;
+
+  BABYLON.SceneLoader.Append("./resources/", "base.glb", scene);
+  BABYLON.SceneLoader.Append("./resources/", "day.glb", scene);
+  BABYLON.SceneLoader.Append("./resources/", "night.glb", scene);
+  BABYLON.SceneLoader.Append("./resources/", "sunset.glb", scene);
 
   // const light1 = new BABYLON.HemisphericLight(
   //   "light1",

@@ -19,6 +19,7 @@
     "@tensorflow/tfjs-converter": "^1.7.4",
     "@tensorflow/tfjs-core": "^1.7.4",
     "babylonjs": "^4.1.0",
+    "babylonjs-loaders": "^4.1.0",
     "regenerator-runtime": "^0.13.5"
   },
   "devDependencies": {
