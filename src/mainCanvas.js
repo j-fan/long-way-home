@@ -18,26 +18,19 @@ const createScene = function () {
   camera.attachControl(canvas, true);
 
   // Environment Texture
-  var hdrTexture = new BABYLON.CubeTexture("img/night.env", scene);
-  scene.imageProcessingConfiguration.exposure = 0.2;
-  scene.imageProcessingConfiguration.contrast = 1.0;
-  scene.environmentTexture = hdrTexture;
-
-  // Skybox
-  var hdrSkybox = BABYLON.Mesh.CreateBox("hdrSkyBox", 1000.0, scene);
-  var hdrSkyboxMaterial = new BABYLON.PBRMaterial("skyBox", scene);
-  hdrSkyboxMaterial.backFaceCulling = false;
-  hdrSkyboxMaterial.reflectionTexture = hdrTexture.clone();
-  hdrSkyboxMaterial.reflectionTexture.coordinatesMode =
-    BABYLON.Texture.SKYBOX_MODE;
-  hdrSkyboxMaterial.microSurface = 1.0;
-  hdrSkyboxMaterial.disableLighting = true;
-  hdrSkybox.material = hdrSkyboxMaterial;
-  hdrSkybox.infiniteDistance = true;
+  const nightHdr = new BABYLON.CubeTexture("img/night.env", scene);
+  const dayHdr = new BABYLON.CubeTexture("img/day.env", scene);
+  const sunsetHDR = new BABYLON.CubeTexture("img/sunset.env", scene);
 
   const overheadLight = new BABYLON.PointLight(
     "overheadLight",
-    new BABYLON.Vector3(0, 0.5, 0.5),
+    new BABYLON.Vector3(0, 0.7, 0.5),
+    scene
+  );
+
+  const outsideLight = new BABYLON.PointLight(
+    "outsideLight",
+    new BABYLON.Vector3(0, 0, -0.2),
     scene
   );
 
@@ -53,6 +46,9 @@ const createScene = function () {
     overheadLight.intensity = 4;
     dirLight.intensity = 2;
     dirLight.diffuse = new BABYLON.Color3(0.2, 0.7, 0.7);
+    scene.environmentTexture = nightHdr;
+    scene.imageProcessingConfiguration.exposure = 0.2;
+    scene.imageProcessingConfiguration.contrast = 1.0;
   };
 
   const dayLighting = () => {
@@ -60,16 +56,24 @@ const createScene = function () {
     overheadLight.intensity = 4;
     dirLight.intensity = 2;
     dirLight.diffuse = new BABYLON.Color3(0.2, 0.7, 0.7);
+    scene.environmentTexture = dayHdr;
+    scene.imageProcessingConfiguration.exposure = 0.5;
+    scene.imageProcessingConfiguration.contrast = 1.0;
   };
 
   const sunsetLighting = () => {
-    overheadLight.diffuse = new BABYLON.Color3(0.9, 0.9, 0.9);
-    overheadLight.intensity = 4;
-    dirLight.intensity = 2;
-    dirLight.diffuse = new BABYLON.Color3(0.2, 0.7, 0.7);
+    overheadLight.diffuse = new BABYLON.Color3.FromHexString("#c4bdff");
+    overheadLight.intensity = 2;
+    dirLight.intensity = 6;
+    dirLight.diffuse = new BABYLON.Color3.FromHexString("#c97424");
+    outsideLight.diffuse = new BABYLON.Color3.FromHexString("#e06234");
+    outsideLight.intensity = 10;
+    scene.environmentTexture = sunsetHDR;
+    scene.imageProcessingConfiguration.exposure = 0.3;
+    scene.imageProcessingConfiguration.contrast = 1.0;
   };
 
-  nightLighting();
+  sunsetLighting();
 
   const shadowGenerator = new BABYLON.ShadowGenerator(1024, dirLight, true);
   shadowGenerator.usePoissonSampling = true;
@@ -94,18 +98,18 @@ const createScene = function () {
   //   scene,
   //   addShadowsToMeshes
   // );
-  BABYLON.SceneLoader.LoadAssetContainer(
-    "./resources/",
-    "night.glb",
-    scene,
-    addShadowsToMeshes
-  );
   // BABYLON.SceneLoader.LoadAssetContainer(
   //   "./resources/",
-  //   "sunset.glb",
+  //   "night.glb",
   //   scene,
   //   addShadowsToMeshes
   // );
+  BABYLON.SceneLoader.LoadAssetContainer(
+    "./resources/",
+    "sunset.glb",
+    scene,
+    addShadowsToMeshes
+  );
 
   const glowLayer = new BABYLON.GlowLayer("glow", scene, {
     mainTextureFixedSize: 256,

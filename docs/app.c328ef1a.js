@@ -952,21 +952,11 @@ var createScene = function createScene() {
   var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, new BABYLON.Vector3(0, 0, 1), scene);
   camera.attachControl(canvas, true); // Environment Texture
 
-  var hdrTexture = new BABYLON.CubeTexture("img/night.env", scene);
-  scene.imageProcessingConfiguration.exposure = 0.2;
-  scene.imageProcessingConfiguration.contrast = 1.0;
-  scene.environmentTexture = hdrTexture; // Skybox
-
-  var hdrSkybox = BABYLON.Mesh.CreateBox("hdrSkyBox", 1000.0, scene);
-  var hdrSkyboxMaterial = new BABYLON.PBRMaterial("skyBox", scene);
-  hdrSkyboxMaterial.backFaceCulling = false;
-  hdrSkyboxMaterial.reflectionTexture = hdrTexture.clone();
-  hdrSkyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
-  hdrSkyboxMaterial.microSurface = 1.0;
-  hdrSkyboxMaterial.disableLighting = true;
-  hdrSkybox.material = hdrSkyboxMaterial;
-  hdrSkybox.infiniteDistance = true;
-  var overheadLight = new BABYLON.PointLight("overheadLight", new BABYLON.Vector3(0, 0.5, 0.5), scene);
+  var nightHdr = new BABYLON.CubeTexture("img/night.env", scene);
+  var dayHdr = new BABYLON.CubeTexture("img/day.env", scene);
+  var sunsetHDR = new BABYLON.CubeTexture("img/sunset.env", scene);
+  var overheadLight = new BABYLON.PointLight("overheadLight", new BABYLON.Vector3(0, 0.7, 0.5), scene);
+  var outsideLight = new BABYLON.PointLight("outsideLight", new BABYLON.Vector3(0, 0, -0.2), scene);
   var dirLight = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(-1, -2, -1), scene);
   dirLight.position = new BABYLON.Vector3(20, 40, 4);
 
@@ -975,6 +965,9 @@ var createScene = function createScene() {
     overheadLight.intensity = 4;
     dirLight.intensity = 2;
     dirLight.diffuse = new BABYLON.Color3(0.2, 0.7, 0.7);
+    scene.environmentTexture = nightHdr;
+    scene.imageProcessingConfiguration.exposure = 0.2;
+    scene.imageProcessingConfiguration.contrast = 1.0;
   };
 
   var dayLighting = function dayLighting() {
@@ -982,16 +975,24 @@ var createScene = function createScene() {
     overheadLight.intensity = 4;
     dirLight.intensity = 2;
     dirLight.diffuse = new BABYLON.Color3(0.2, 0.7, 0.7);
+    scene.environmentTexture = dayHdr;
+    scene.imageProcessingConfiguration.exposure = 0.5;
+    scene.imageProcessingConfiguration.contrast = 1.0;
   };
 
   var sunsetLighting = function sunsetLighting() {
-    overheadLight.diffuse = new BABYLON.Color3(0.9, 0.9, 0.9);
-    overheadLight.intensity = 4;
-    dirLight.intensity = 2;
-    dirLight.diffuse = new BABYLON.Color3(0.2, 0.7, 0.7);
+    overheadLight.diffuse = new BABYLON.Color3.FromHexString("#c4bdff");
+    overheadLight.intensity = 2;
+    dirLight.intensity = 6;
+    dirLight.diffuse = new BABYLON.Color3.FromHexString("#c97424");
+    outsideLight.diffuse = new BABYLON.Color3.FromHexString("#e06234");
+    outsideLight.intensity = 10;
+    scene.environmentTexture = sunsetHDR;
+    scene.imageProcessingConfiguration.exposure = 0.3;
+    scene.imageProcessingConfiguration.contrast = 1.0;
   };
 
-  nightLighting();
+  sunsetLighting();
   var shadowGenerator = new BABYLON.ShadowGenerator(1024, dirLight, true);
   shadowGenerator.usePoissonSampling = true;
 
@@ -1010,14 +1011,14 @@ var createScene = function createScene() {
   //   scene,
   //   addShadowsToMeshes
   // );
-
-  BABYLON.SceneLoader.LoadAssetContainer("./resources/", "night.glb", scene, addShadowsToMeshes); // BABYLON.SceneLoader.LoadAssetContainer(
+  // BABYLON.SceneLoader.LoadAssetContainer(
   //   "./resources/",
-  //   "sunset.glb",
+  //   "night.glb",
   //   scene,
   //   addShadowsToMeshes
   // );
 
+  BABYLON.SceneLoader.LoadAssetContainer("./resources/", "sunset.glb", scene, addShadowsToMeshes);
   var glowLayer = new BABYLON.GlowLayer("glow", scene, {
     mainTextureFixedSize: 256,
     blurKernelSize: 32
@@ -1172,7 +1173,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59013" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60835" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
