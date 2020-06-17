@@ -13,16 +13,12 @@ export const initLights = (scene) => {
   const dayHdr = new BABYLON.CubeTexture("img/day.env", scene);
   const sunsetHDR = new BABYLON.CubeTexture("img/sunset.env", scene);
 
-  scene.environmentTexture = nightHdr;
-  scene.imageProcessingConfiguration.exposure = 0.01;
-  scene.imageProcessingConfiguration.contrast = 1.0;
-
   overheadLight = new BABYLON.PointLight(
     "overheadLight",
     new BABYLON.Vector3(0, 0.7, 0.5),
     scene
   );
-  overheadLight.intensity = 5;
+  overheadLight.intensity = 8;
 
   outsideLight = new BABYLON.PointLight(
     "outsideLight",
@@ -41,40 +37,38 @@ export const initLights = (scene) => {
     overheadLight.diffuse = new BABYLON.Color3.FromHexString("#ad9f72");
     outsideLight.intensity = 0.5;
     outsideLight.diffuse = new BABYLON.Color3.FromHexString("#478fed");
-    // scene.environmentTexture = nightHdr;
-    // scene.imageProcessingConfiguration.exposure = 0.1;
-    // scene.imageProcessingConfiguration.contrast = 1.0;
+    scene.environmentTexture = nightHdr;
+    scene.imageProcessingConfiguration.exposure = 0.1;
+    scene.imageProcessingConfiguration.contrast = 1.0;
 
-    dirLight.intensity = 100;
-    doLightColorAnim(dirLight);
+    doLightColorAnim();
   };
 
   const dayLighting = () => {
     overheadLight.diffuse = new BABYLON.Color3.FromHexString("#8c8151");
     outsideLight.diffuse = new BABYLON.Color3.FromHexString("#85f2e7");
     outsideLight.intensity = 10;
-    // scene.environmentTexture = dayHdr;
-    // scene.imageProcessingConfiguration.exposure = 0.3;
-    // scene.imageProcessingConfiguration.contrast = 1.0;
+    scene.environmentTexture = dayHdr;
+    scene.imageProcessingConfiguration.exposure = 0.3;
+    scene.imageProcessingConfiguration.contrast = 1.0;
 
-    dirLight.intensity = 100;
-    doLightColorAnim(dirLight);
+    doLightColorAnim();
   };
 
   const sunsetLighting = () => {
     overheadLight.diffuse = new BABYLON.Color3.FromHexString("#c4bdff");
     outsideLight.diffuse = new BABYLON.Color3.FromHexString("#e06234");
     outsideLight.intensity = 10;
-    // scene.environmentTexture = sunsetHDR;
-    // scene.imageProcessingConfiguration.exposure = 0.1;
-    // scene.imageProcessingConfiguration.contrast = 1.0;
+    scene.environmentTexture = sunsetHDR;
+    scene.imageProcessingConfiguration.exposure = 0.05;
+    scene.imageProcessingConfiguration.contrast = 1.0;
 
-    dirLight.intensity = 100;
-    doLightColorAnim(dirLight);
+    doLightColorAnim();
   };
 
   createLightIntensityAnim(overheadLight);
-  createLightColorAnim(dirLight);
+  createDirLightColorAnim();
+  createDirLightIntensityAnim();
   sunsetLighting();
 
   lightingSettings.setDay = dayLighting;
@@ -115,7 +109,7 @@ const createLightIntensityAnim = (light) => {
   light.animations.push(lightAnim);
 };
 
-const createLightColorAnim = async (light) => {
+const createDirLightColorAnim = () => {
   const lightAnim = new BABYLON.Animation(
     "anim",
     "diffuse",
@@ -142,13 +136,43 @@ const createLightColorAnim = async (light) => {
     value: new BABYLON.Color3.FromHexString("#85f2e7"),
   });
   lightAnim.setKeys(keys);
-  light.animations.push(lightAnim);
+  dirLight.animations.push(lightAnim);
+};
+
+const createDirLightIntensityAnim = () => {
+  const lightAnim = new BABYLON.Animation(
+    "anim",
+    "intensity",
+    30,
+    BABYLON.Animation.ANIMATIONTYPE_FLOAT,
+    BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE
+  );
+
+  let keys = [];
+  keys.push({
+    frame: 0,
+    value: 10,
+  });
+  keys.push({
+    frame: 30,
+    value: 50,
+  });
+  keys.push({
+    frame: 60,
+    value: 1,
+  });
+  keys.push({
+    frame: 90,
+    value: 10,
+  });
+  lightAnim.setKeys(keys);
+  dirLight.animations.push(lightAnim);
 };
 
 let timeOfDayIndex = 0;
 const doLightColorAnim = (light) => {
   sceneRef.beginAnimation(
-    light,
+    dirLight,
     timeOfDayIndex * 30,
     (timeOfDayIndex + 1) * 30,
     false

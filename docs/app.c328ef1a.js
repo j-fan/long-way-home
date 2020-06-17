@@ -935,17 +935,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.turnOverHeadLightOn = exports.turnOverHeadLightOff = exports.initLights = exports.lightingSettings = exports.shadowGenerator = void 0;
 
-var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
-
-var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
-
 var BABYLON = _interopRequireWildcard(require("babylonjs"));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var sceneLights = {};
 var shadowGenerator;
@@ -961,11 +955,8 @@ var initLights = function initLights(scene) {
   var nightHdr = new BABYLON.CubeTexture("img/night.env", scene);
   var dayHdr = new BABYLON.CubeTexture("img/day.env", scene);
   var sunsetHDR = new BABYLON.CubeTexture("img/sunset.env", scene);
-  scene.environmentTexture = nightHdr;
-  scene.imageProcessingConfiguration.exposure = 0.01;
-  scene.imageProcessingConfiguration.contrast = 1.0;
   overheadLight = new BABYLON.PointLight("overheadLight", new BABYLON.Vector3(0, 0.7, 0.5), scene);
-  overheadLight.intensity = 5;
+  overheadLight.intensity = 8;
   outsideLight = new BABYLON.PointLight("outsideLight", new BABYLON.Vector3(0, 0, -0.2), scene);
   dirLight = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(-1, -2, -1), scene);
   dirLight.position = new BABYLON.Vector3(20, 40, 4);
@@ -973,38 +964,36 @@ var initLights = function initLights(scene) {
   var nightLighting = function nightLighting() {
     overheadLight.diffuse = new BABYLON.Color3.FromHexString("#ad9f72");
     outsideLight.intensity = 0.5;
-    outsideLight.diffuse = new BABYLON.Color3.FromHexString("#478fed"); // scene.environmentTexture = nightHdr;
-    // scene.imageProcessingConfiguration.exposure = 0.1;
-    // scene.imageProcessingConfiguration.contrast = 1.0;
-
-    dirLight.intensity = 100;
-    doLightColorAnim(dirLight);
+    outsideLight.diffuse = new BABYLON.Color3.FromHexString("#478fed");
+    scene.environmentTexture = nightHdr;
+    scene.imageProcessingConfiguration.exposure = 0.1;
+    scene.imageProcessingConfiguration.contrast = 1.0;
+    doLightColorAnim();
   };
 
   var dayLighting = function dayLighting() {
     overheadLight.diffuse = new BABYLON.Color3.FromHexString("#8c8151");
     outsideLight.diffuse = new BABYLON.Color3.FromHexString("#85f2e7");
-    outsideLight.intensity = 10; // scene.environmentTexture = dayHdr;
-    // scene.imageProcessingConfiguration.exposure = 0.3;
-    // scene.imageProcessingConfiguration.contrast = 1.0;
-
-    dirLight.intensity = 100;
-    doLightColorAnim(dirLight);
+    outsideLight.intensity = 10;
+    scene.environmentTexture = dayHdr;
+    scene.imageProcessingConfiguration.exposure = 0.3;
+    scene.imageProcessingConfiguration.contrast = 1.0;
+    doLightColorAnim();
   };
 
   var sunsetLighting = function sunsetLighting() {
     overheadLight.diffuse = new BABYLON.Color3.FromHexString("#c4bdff");
     outsideLight.diffuse = new BABYLON.Color3.FromHexString("#e06234");
-    outsideLight.intensity = 10; // scene.environmentTexture = sunsetHDR;
-    // scene.imageProcessingConfiguration.exposure = 0.1;
-    // scene.imageProcessingConfiguration.contrast = 1.0;
-
-    dirLight.intensity = 100;
-    doLightColorAnim(dirLight);
+    outsideLight.intensity = 10;
+    scene.environmentTexture = sunsetHDR;
+    scene.imageProcessingConfiguration.exposure = 0.05;
+    scene.imageProcessingConfiguration.contrast = 1.0;
+    doLightColorAnim();
   };
 
   createLightIntensityAnim(overheadLight);
-  createLightColorAnim(dirLight);
+  createDirLightColorAnim();
+  createDirLightIntensityAnim();
   sunsetLighting();
   lightingSettings.setDay = dayLighting;
   lightingSettings.setNight = nightLighting;
@@ -1043,54 +1032,59 @@ var createLightIntensityAnim = function createLightIntensityAnim(light) {
   light.animations.push(lightAnim);
 };
 
-var createLightColorAnim = /*#__PURE__*/function () {
-  var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(light) {
-    var lightAnim, keys;
-    return _regenerator.default.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            lightAnim = new BABYLON.Animation("anim", "diffuse", 30, BABYLON.Animation.ANIMATIONTYPE_COLOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
-            keys = [];
-            keys.push({
-              frame: 0,
-              value: new BABYLON.Color3.FromHexString("#85f2e7")
-            });
-            keys.push({
-              frame: 30,
-              value: new BABYLON.Color3.FromHexString("#c97424")
-            });
-            keys.push({
-              frame: 60,
-              value: new BABYLON.Color3.FromHexString("#478fed")
-            });
-            keys.push({
-              frame: 90,
-              value: new BABYLON.Color3.FromHexString("#85f2e7")
-            });
-            lightAnim.setKeys(keys);
-            light.animations.push(lightAnim);
+var createDirLightColorAnim = function createDirLightColorAnim() {
+  var lightAnim = new BABYLON.Animation("anim", "diffuse", 30, BABYLON.Animation.ANIMATIONTYPE_COLOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+  var keys = [];
+  keys.push({
+    frame: 0,
+    value: new BABYLON.Color3.FromHexString("#85f2e7")
+  });
+  keys.push({
+    frame: 30,
+    value: new BABYLON.Color3.FromHexString("#c97424")
+  });
+  keys.push({
+    frame: 60,
+    value: new BABYLON.Color3.FromHexString("#478fed")
+  });
+  keys.push({
+    frame: 90,
+    value: new BABYLON.Color3.FromHexString("#85f2e7")
+  });
+  lightAnim.setKeys(keys);
+  dirLight.animations.push(lightAnim);
+};
 
-          case 8:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-
-  return function createLightColorAnim(_x) {
-    return _ref.apply(this, arguments);
-  };
-}();
+var createDirLightIntensityAnim = function createDirLightIntensityAnim() {
+  var lightAnim = new BABYLON.Animation("anim", "intensity", 30, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+  var keys = [];
+  keys.push({
+    frame: 0,
+    value: 10
+  });
+  keys.push({
+    frame: 30,
+    value: 50
+  });
+  keys.push({
+    frame: 60,
+    value: 1
+  });
+  keys.push({
+    frame: 90,
+    value: 10
+  });
+  lightAnim.setKeys(keys);
+  dirLight.animations.push(lightAnim);
+};
 
 var timeOfDayIndex = 0;
 
 var doLightColorAnim = function doLightColorAnim(light) {
-  sceneRef.beginAnimation(light, timeOfDayIndex * 30, (timeOfDayIndex + 1) * 30, false);
+  sceneRef.beginAnimation(dirLight, timeOfDayIndex * 30, (timeOfDayIndex + 1) * 30, false);
   timeOfDayIndex = (timeOfDayIndex + 1) % 3;
 };
-},{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js","babylonjs":"../node_modules/babylonjs/babylon.js"}],"sceneContainers.js":[function(require,module,exports) {
+},{"babylonjs":"../node_modules/babylonjs/babylon.js"}],"sceneContainers.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
