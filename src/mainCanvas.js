@@ -33,7 +33,7 @@ const createScene = async () => {
 
   initSceneSwitchControl();
   initOverheadLightControl();
-  // scene.debugLayer.show();
+  scene.debugLayer.show();
 
   return scene;
 };
