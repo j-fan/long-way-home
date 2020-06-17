@@ -13,4 +13,17 @@ body {
   height: 100vh;
 }
 
+#planeButtons {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+#planeButtons .planeButton {
+  background-color: white;
+  min-height: 40px;
+  user-select: none;
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=/app.55bab2ff.css.map */

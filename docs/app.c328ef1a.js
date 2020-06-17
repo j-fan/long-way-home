@@ -927,54 +927,56 @@ See the Apache Version 2.0 License for specific language governing permissions
 and limitations under the License.
 ***************************************************************************** */
 var r=function(e,t){return(r=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var n in t)t.hasOwnProperty(n)&&(e[n]=t[n])})(e,t)};function o(e,t){function n(){this.constructor=e}r(e,t),e.prototype=null===t?Object.create(t):(n.prototype=t.prototype,new n)}var a,i,s,l,u,c,f,d;!function(e){e[e.BYTE=5120]="BYTE",e[e.UNSIGNED_BYTE=5121]="UNSIGNED_BYTE",e[e.SHORT=5122]="SHORT",e[e.UNSIGNED_SHORT=5123]="UNSIGNED_SHORT",e[e.FLOAT=5126]="FLOAT"}(a||(a={})),function(e){e[e.FRAGMENT=35632]="FRAGMENT",e[e.VERTEX=35633]="VERTEX"}(i||(i={})),function(e){e[e.BYTE=5120]="BYTE",e[e.UNSIGNED_BYTE=5121]="UNSIGNED_BYTE",e[e.SHORT=5122]="SHORT",e[e.UNSIGNED_SHORT=5123]="UNSIGNED_SHORT",e[e.INT=5124]="INT",e[e.UNSIGNED_INT=5125]="UNSIGNED_INT",e[e.FLOAT=5126]="FLOAT",e[e.FLOAT_VEC2=35664]="FLOAT_VEC2",e[e.FLOAT_VEC3=35665]="FLOAT_VEC3",e[e.FLOAT_VEC4=35666]="FLOAT_VEC4",e[e.INT_VEC2=35667]="INT_VEC2",e[e.INT_VEC3=35668]="INT_VEC3",e[e.INT_VEC4=35669]="INT_VEC4",e[e.BOOL=35670]="BOOL",e[e.BOOL_VEC2=35671]="BOOL_VEC2",e[e.BOOL_VEC3=35672]="BOOL_VEC3",e[e.BOOL_VEC4=35673]="BOOL_VEC4",e[e.FLOAT_MAT2=35674]="FLOAT_MAT2",e[e.FLOAT_MAT3=35675]="FLOAT_MAT3",e[e.FLOAT_MAT4=35676]="FLOAT_MAT4",e[e.SAMPLER_2D=35678]="SAMPLER_2D"}(s||(s={})),function(e){e[e.CLAMP_TO_EDGE=33071]="CLAMP_TO_EDGE",e[e.MIRRORED_REPEAT=33648]="MIRRORED_REPEAT",e[e.REPEAT=10497]="REPEAT"}(l||(l={})),function(e){e[e.NEAREST=9728]="NEAREST",e[e.LINEAR=9728]="LINEAR",e[e.NEAREST_MIPMAP_NEAREST=9984]="NEAREST_MIPMAP_NEAREST",e[e.LINEAR_MIPMAP_NEAREST=9985]="LINEAR_MIPMAP_NEAREST",e[e.NEAREST_MIPMAP_LINEAR=9986]="NEAREST_MIPMAP_LINEAR",e[e.LINEAR_MIPMAP_LINEAR=9987]="LINEAR_MIPMAP_LINEAR"}(u||(u={})),function(e){e[e.ALPHA=6406]="ALPHA",e[e.RGB=6407]="RGB",e[e.RGBA=6408]="RGBA",e[e.LUMINANCE=6409]="LUMINANCE",e[e.LUMINANCE_ALPHA=6410]="LUMINANCE_ALPHA"}(c||(c={})),function(e){e[e.FRONT=1028]="FRONT",e[e.BACK=1029]="BACK",e[e.FRONT_AND_BACK=1032]="FRONT_AND_BACK"}(f||(f={})),function(e){e[e.ZERO=0]="ZERO",e[e.ONE=1]="ONE",e[e.SRC_COLOR=768]="SRC_COLOR",e[e.ONE_MINUS_SRC_COLOR=769]="ONE_MINUS_SRC_COLOR",e[e.DST_COLOR=774]="DST_COLOR",e[e.ONE_MINUS_DST_COLOR=775]="ONE_MINUS_DST_COLOR",e[e.SRC_ALPHA=770]="SRC_ALPHA",e[e.ONE_MINUS_SRC_ALPHA=771]="ONE_MINUS_SRC_ALPHA",e[e.DST_ALPHA=772]="DST_ALPHA",e[e.ONE_MINUS_DST_ALPHA=773]="ONE_MINUS_DST_ALPHA",e[e.CONSTANT_COLOR=32769]="CONSTANT_COLOR",e[e.ONE_MINUS_CONSTANT_COLOR=32770]="ONE_MINUS_CONSTANT_COLOR",e[e.CONSTANT_ALPHA=32771]="CONSTANT_ALPHA",e[e.ONE_MINUS_CONSTANT_ALPHA=32772]="ONE_MINUS_CONSTANT_ALPHA",e[e.SRC_ALPHA_SATURATE=776]="SRC_ALPHA_SATURATE"}(d||(d={}));var h,p=n(0),m=function(){function e(){}return e.SetMatrix=function(e,t,n,r,o){var a=null;if("MODEL"===n.semantic?a=t.getWorldMatrix():"PROJECTION"===n.semantic?a=e.getProjectionMatrix():"VIEW"===n.semantic?a=e.getViewMatrix():"MODELVIEWINVERSETRANSPOSE"===n.semantic?a=p.Matrix.Transpose(t.getWorldMatrix().multiply(e.getViewMatrix()).invert()):"MODELVIEW"===n.semantic?a=t.getWorldMatrix().multiply(e.getViewMatrix()):"MODELVIEWPROJECTION"===n.semantic?a=t.getWorldMatrix().multiply(e.getTransformMatrix()):"MODELINVERSE"===n.semantic?a=t.getWorldMatrix().invert():"VIEWINVERSE"===n.semantic?a=e.getViewMatrix().invert():"PROJECTIONINVERSE"===n.semantic?a=e.getProjectionMatrix().invert():"MODELVIEWINVERSE"===n.semantic?a=t.getWorldMatrix().multiply(e.getViewMatrix()).invert():"MODELVIEWPROJECTIONINVERSE"===n.semantic?a=t.getWorldMatrix().multiply(e.getTransformMatrix()).invert():"MODELINVERSETRANSPOSE"===n.semantic&&(a=p.Matrix.Transpose(t.getWorldMatrix().invert())),a)switch(n.type){case s.FLOAT_MAT2:o.setMatrix2x2(r,p.Matrix.GetAsMatrix2x2(a));break;case s.FLOAT_MAT3:o.setMatrix3x3(r,p.Matrix.GetAsMatrix3x3(a));break;case s.FLOAT_MAT4:o.setMatrix(r,a)}},e.SetUniform=function(e,t,n,r){switch(r){case s.FLOAT:return e.setFloat(t,n),!0;case s.FLOAT_VEC2:return e.setVector2(t,p.Vector2.FromArray(n)),!0;case s.FLOAT_VEC3:return e.setVector3(t,p.Vector3.FromArray(n)),!0;case s.FLOAT_VEC4:return e.setVector4(t,p.Vector4.FromArray(n)),!0;default:return!1}},e.GetWrapMode=function(e){switch(e){case l.CLAMP_TO_EDGE:return p.Texture.CLAMP_ADDRESSMODE;case l.MIRRORED_REPEAT:return p.Texture.MIRROR_ADDRESSMODE;case l.REPEAT:default:return p.Texture.WRAP_ADDRESSMODE}},e.GetByteStrideFromType=function(e){switch(e.type){case"VEC2":return 2;case"VEC3":return 3;case"VEC4":case"MAT2":return 4;case"MAT3":return 9;case"MAT4":return 16;default:return 1}},e.GetTextureFilterMode=function(e){switch(e){case u.LINEAR:case u.LINEAR_MIPMAP_NEAREST:case u.LINEAR_MIPMAP_LINEAR:return p.Texture.TRILINEAR_SAMPLINGMODE;case u.NEAREST:case u.NEAREST_MIPMAP_NEAREST:return p.Texture.NEAREST_SAMPLINGMODE;default:return p.Texture.BILINEAR_SAMPLINGMODE}},e.GetBufferFromBufferView=function(e,t,n,r,o){n=t.byteOffset+n;var i=e.loadedBufferViews[t.buffer];if(n+r>i.byteLength)throw new Error("Buffer access is out of range");var s=i.buffer;switch(n+=i.byteOffset,o){case a.BYTE:return new Int8Array(s,n,r);case a.UNSIGNED_BYTE:return new Uint8Array(s,n,r);case a.SHORT:return new Int16Array(s,n,r);case a.UNSIGNED_SHORT:return new Uint16Array(s,n,r);default:return new Float32Array(s,n,r)}},e.GetBufferFromAccessor=function(t,n){var r=t.bufferViews[n.bufferView],o=n.count*e.GetByteStrideFromType(n);return e.GetBufferFromBufferView(t,r,n.byteOffset,o,n.componentType)},e.DecodeBufferToText=function(e){for(var t="",n=e.byteLength,r=0;r<n;++r)t+=String.fromCharCode(e[r]);return t},e.GetDefaultMaterial=function(t){if(!e._DefaultMaterial){p.Effect.ShadersStore.GLTFDefaultMaterialVertexShader=["precision highp float;","","uniform mat4 worldView;","uniform mat4 projection;","","attribute vec3 position;","","void main(void)","{","    gl_Position = projection * worldView * vec4(position, 1.0);","}"].join("\n"),p.Effect.ShadersStore.GLTFDefaultMaterialPixelShader=["precision highp float;","","uniform vec4 u_emission;","","void main(void)","{","    gl_FragColor = u_emission;","}"].join("\n");var n={attributes:["position"],uniforms:["worldView","projection","u_emission"],samplers:new Array,needAlphaBlending:!1};e._DefaultMaterial=new p.ShaderMaterial("GLTFDefaultMaterial",t,{vertex:"GLTFDefaultMaterial",fragment:"GLTFDefaultMaterial"},n),e._DefaultMaterial.setColor4("u_emission",new p.Color4(.5,.5,.5,1))}return e._DefaultMaterial},e._DefaultMaterial=null,e}(),_=n(2);!function(e){e[e.IDENTIFIER=1]="IDENTIFIER",e[e.UNKNOWN=2]="UNKNOWN",e[e.END_OF_INPUT=3]="END_OF_INPUT"}(h||(h={}));var y=function(){function e(e){this._pos=0,this.currentToken=h.UNKNOWN,this.currentIdentifier="",this.currentString="",this.isLetterOrDigitPattern=/^[a-zA-Z0-9]+$/,this._toParse=e,this._maxPos=e.length}return e.prototype.getNextToken=function(){if(this.isEnd())return h.END_OF_INPUT;if(this.currentString=this.read(),this.currentToken=h.UNKNOWN,"_"===this.currentString||this.isLetterOrDigitPattern.test(this.currentString))for(this.currentToken=h.IDENTIFIER,this.currentIdentifier=this.currentString;!this.isEnd()&&(this.isLetterOrDigitPattern.test(this.currentString=this.peek())||"_"===this.currentString);)this.currentIdentifier+=this.currentString,this.forward();return this.currentToken},e.prototype.peek=function(){return this._toParse[this._pos]},e.prototype.read=function(){return this._toParse[this._pos++]},e.prototype.forward=function(){this._pos++},e.prototype.isEnd=function(){return this._pos>=this._maxPos},e}(),b=["MODEL","VIEW","PROJECTION","MODELVIEW","MODELVIEWPROJECTION","JOINTMATRIX"],v=["world","view","projection","worldView","worldViewProjection","mBones"],A=["translation","rotation","scale"],g=["position","rotationQuaternion","scaling"],T=function(e,t,n){for(var r in e){var o=e[r];n[t][r]=o}},x=function(e){if(e)for(var t=0;t<e.length/2;t++)e[2*t+1]=1-e[2*t+1]},E=function(e){if("NORMAL"===e.semantic)return"normal";if("POSITION"===e.semantic)return"position";if("JOINT"===e.semantic)return"matricesIndices";if("WEIGHT"===e.semantic)return"matricesWeights";if("COLOR"===e.semantic)return"color";if(e.semantic&&-1!==e.semantic.indexOf("TEXCOORD_")){var t=Number(e.semantic.split("_")[1]);return"uv"+(0===t?"":t+1)}return null},L=function(e){var t=null;if(e.translation||e.rotation||e.scale){var n=p.Vector3.FromArray(e.scale||[1,1,1]),r=p.Quaternion.FromArray(e.rotation||[0,0,0,1]),o=p.Vector3.FromArray(e.translation||[0,0,0]);t=p.Matrix.Compose(n,r,o)}else t=p.Matrix.FromArray(e.matrix);return t},O=function(e,t,n,r){for(var o=0;o<r.bones.length;o++)if(r.bones[o].name===n)return r.bones[o];var a=e.nodes;for(var i in a){var s=a[i];if(s.jointName){var l=s.children;for(o=0;o<l.length;o++){var u=e.nodes[l[o]];if(u.jointName&&u.jointName===n){var c=L(s),f=new p.Bone(s.name||"",r,O(e,t,s.jointName,r),c);return f.id=i,f}}}}return null},M=function(e,t){for(var n=0;n<e.length;n++)for(var r=e[n],o=0;o<r.node.children.length;o++){if(r.node.children[o]===t)return r.bone}return null},S=function(e,t){var n=e.nodes,r=n[t];if(r)return{node:r,id:t};for(var o in n)if((r=n[o]).jointName===t)return{node:r,id:o};return null},w=function(e,t){for(var n=0;n<e.jointNames.length;n++)if(e.jointNames[n]===t)return!0;return!1},C=function(e,t,n,r,o){if(r||(r=new p.Skeleton(t.name||"","",e.scene)),!t.babylonSkeleton)return r;var a=[],i=[];!function(e,t,n,r){for(var o in e.nodes){var a=e.nodes[o],i=o;if(a.jointName&&!w(n,a.jointName)){var s=L(a),l=new p.Bone(a.name||"",t,null,s);l.id=i,r.push({bone:l,node:a,id:i})}}for(var u=0;u<r.length;u++)for(var c=r[u],f=c.node.children,d=0;d<f.length;d++){for(var h=null,m=0;m<r.length;m++)if(r[m].id===f[d]){h=r[m];break}h&&(h.bone._parent=c.bone,c.bone.children.push(h.bone))}}(e,r,t,a),r.bones=[];for(var s=0;s<t.jointNames.length;s++){if(A=S(e,t.jointNames[s])){var l=A.node;if(l){o=A.id;var u=e.scene.getBoneByID(o);if(u)r.bones.push(u);else{for(var c=!1,f=null,d=0;d<s;d++){var h=S(e,t.jointNames[d]);if(h){var m=h.node;if(m){var _=m.children;if(_){c=!1;for(var y=0;y<_.length;y++)if(_[y]===o){f=O(e,t,t.jointNames[d],r),c=!0;break}if(c)break}}else p.Tools.Warn("Joint named "+t.jointNames[d]+" does not exist when looking for parent")}}var b=L(l);!f&&a.length>0&&(f=M(a,o))&&-1===i.indexOf(f)&&i.push(f),new p.Bone(l.jointName||"",r,f,b).id=o}}else p.Tools.Warn("Joint named "+t.jointNames[s]+" does not exist")}}var v=r.bones;r.bones=[];for(s=0;s<t.jointNames.length;s++){var A;if(A=S(e,t.jointNames[s]))for(d=0;d<v.length;d++)if(v[d].id===A.id){r.bones.push(v[d]);break}}r.prepare();for(s=0;s<i.length;s++)r.bones.push(i[s]);return r},N=function(e,t,n,r,o){if(o||(e.scene._blockEntityCollection=e.forAssetContainer,o=new p.Mesh(t.name||"",e.scene),e.scene._blockEntityCollection=!1,o.id=r),!t.babylonNode)return o;for(var a,i=[],s=null,l=new Array,u=new Array,c=new Array,f=new Array,d=0;d<n.length;d++){var h=n[d];if(P=e.meshes[h])for(var y=0;y<P.primitives.length;y++){var b=new p.VertexData,v=P.primitives[y];v.mode;var A=v.attributes,g=null,T=null;for(var E in A)if(g=e.accessors[A[E]],T=m.GetBufferFromAccessor(e,g),"NORMAL"===E)b.normals=new Float32Array(T.length),b.normals.set(T);else if("POSITION"===E){if(_.GLTFFileLoader.HomogeneousCoordinates){b.positions=new Float32Array(T.length-T.length/4);for(var L=0;L<T.length;L+=4)b.positions[L]=T[L],b.positions[L+1]=T[L+1],b.positions[L+2]=T[L+2]}else b.positions=new Float32Array(T.length),b.positions.set(T);u.push(b.positions.length)}else if(-1!==E.indexOf("TEXCOORD_")){var O=Number(E.split("_")[1]),M=p.VertexBuffer.UVKind+(0===O?"":O+1),S=new Float32Array(T.length);S.set(T),x(S),b.set(S,M)}else"JOINT"===E?(b.matricesIndices=new Float32Array(T.length),b.matricesIndices.set(T)):"WEIGHT"===E?(b.matricesWeights=new Float32Array(T.length),b.matricesWeights.set(T)):"COLOR"===E&&(b.colors=new Float32Array(T.length),b.colors.set(T));if(g=e.accessors[v.indices])T=m.GetBufferFromAccessor(e,g),b.indices=new Int32Array(T.length),b.indices.set(T),f.push(b.indices.length);else{var w=[];for(L=0;L<b.positions.length/3;L++)w.push(L);b.indices=new Int32Array(w),f.push(b.indices.length)}s?s.merge(b):s=b;var C=e.scene.getMaterialByID(v.material);i.push(null===C?m.GetDefaultMaterial(e.scene):C),l.push(0===l.length?0:l[l.length-1]+u[u.length-2]),c.push(0===c.length?0:c[c.length-1]+f[f.length-2])}}e.scene._blockEntityCollection=e.forAssetContainer,i.length>1?(a=new p.MultiMaterial("multimat"+r,e.scene)).subMaterials=i:a=new p.StandardMaterial("multimat"+r,e.scene),1===i.length&&(a=i[0]),o.material||(o.material=a),new p.Geometry(r,e.scene,s,!1,o),o.computeWorldMatrix(!0),e.scene._blockEntityCollection=!1,o.subMeshes=[];var N=0;for(d=0;d<n.length;d++){var P;h=n[d];if(P=e.meshes[h])for(y=0;y<P.primitives.length;y++)P.primitives[y].mode,p.SubMesh.AddToMesh(N,l[N],u[N],c[N],f[N],o,o,!0),N++}return o},P=function(e,t,n,r){e.position&&(e.position=t),(e.rotationQuaternion||e.rotation)&&(e.rotationQuaternion=n),e.scaling&&(e.scaling=r)},R=function(e,t,n,r){var o=null;if(e.importOnlyMeshes&&(t.skin||t.meshes)&&e.importMeshesNames&&e.importMeshesNames.length>0&&-1===e.importMeshesNames.indexOf(t.name||""))return null;if(t.skin){if(t.meshes){var a=e.skins[t.skin];(i=N(e,t,t.meshes,n,t.babylonNode)).skeleton=e.scene.getLastSkeletonByID(t.skin),null===i.skeleton&&(i.skeleton=C(e,a,0,a.babylonSkeleton,t.skin),a.babylonSkeleton||(a.babylonSkeleton=i.skeleton)),o=i}}else if(t.meshes){var i;o=i=N(e,t,t.mesh?[t.mesh]:t.meshes,n,t.babylonNode)}else if(!t.light||t.babylonNode||e.importOnlyMeshes){if(t.camera&&!t.babylonNode&&!e.importOnlyMeshes){var s=e.cameras[t.camera];if(s){if(e.scene._blockEntityCollection=e.forAssetContainer,"orthographic"===s.type){var l=new p.FreeCamera(t.camera,p.Vector3.Zero(),e.scene,!1);l.name=t.name||"",l.mode=p.Camera.ORTHOGRAPHIC_CAMERA,l.attachControl(e.scene.getEngine().getInputElement()),o=l}else if("perspective"===s.type){var u=s[s.type],c=new p.FreeCamera(t.camera,p.Vector3.Zero(),e.scene,!1);c.name=t.name||"",c.attachControl(e.scene.getEngine().getInputElement()),u.aspectRatio||(u.aspectRatio=e.scene.getEngine().getRenderWidth()/e.scene.getEngine().getRenderHeight()),u.znear&&u.zfar&&(c.maxZ=u.zfar,c.minZ=u.znear),o=c}e.scene._blockEntityCollection=!1}}}else{var f=e.lights[t.light];if(f)if("ambient"===f.type){var d=f[f.type],h=new p.HemisphericLight(t.light,p.Vector3.Zero(),e.scene);h.name=t.name||"",d.color&&(h.diffuse=p.Color3.FromArray(d.color)),o=h}else if("directional"===f.type){var m=f[f.type],_=new p.DirectionalLight(t.light,p.Vector3.Zero(),e.scene);_.name=t.name||"",m.color&&(_.diffuse=p.Color3.FromArray(m.color)),o=_}else if("point"===f.type){var y=f[f.type],b=new p.PointLight(t.light,p.Vector3.Zero(),e.scene);b.name=t.name||"",y.color&&(b.diffuse=p.Color3.FromArray(y.color)),o=b}else if("spot"===f.type){var v=f[f.type],A=new p.SpotLight(t.light,p.Vector3.Zero(),p.Vector3.Zero(),0,0,e.scene);A.name=t.name||"",v.color&&(A.diffuse=p.Color3.FromArray(v.color)),v.fallOfAngle&&(A.angle=v.fallOfAngle),v.fallOffExponent&&(A.exponent=v.fallOffExponent),o=A}}if(!t.jointName){if(t.babylonNode)return t.babylonNode;if(null===o){e.scene._blockEntityCollection=e.forAssetContainer;var g=new p.Mesh(t.name||"",e.scene);e.scene._blockEntityCollection=!1,t.babylonNode=g,o=g}}if(null!==o){if(t.matrix&&o instanceof p.Mesh)!function(e,t,n){if(t.matrix){var r=new p.Vector3(0,0,0),o=new p.Quaternion,a=new p.Vector3(0,0,0);p.Matrix.FromArray(t.matrix).decompose(a,o,r),P(e,r,o,a)}else t.translation&&t.rotation&&t.scale&&P(e,p.Vector3.FromArray(t.translation),p.Quaternion.FromArray(t.rotation),p.Vector3.FromArray(t.scale));e.computeWorldMatrix(!0)}(o,t);else{var T=t.translation||[0,0,0],x=t.rotation||[0,0,0,1],E=t.scale||[1,1,1];P(o,p.Vector3.FromArray(T),p.Quaternion.FromArray(x),p.Vector3.FromArray(E))}o.updateCache(!0),t.babylonNode=o}return o},I=function(e,t,n,r){void 0===r&&(r=!1);var o=e.nodes[t],a=null;if(r=!(e.importOnlyMeshes&&!r&&e.importMeshesNames)||(-1!==e.importMeshesNames.indexOf(o.name||"")||0===e.importMeshesNames.length),!o.jointName&&r&&null!==(a=R(e,o,t))&&(a.id=t,a.parent=n),o.children)for(var i=0;i<o.children.length;i++)I(e,o.children[i],a,r)},F=function(e){var t=e.currentScene;if(t)for(var n=0;n<t.nodes.length;n++)I(e,t.nodes[n],null);else for(var r in e.scenes){t=e.scenes[r];for(n=0;n<t.nodes.length;n++)I(e,t.nodes[n],null)}!function(e){for(var t in e.animations){var n=e.animations[t];if(n.channels&&n.samplers)for(var r=null,o=0;o<n.channels.length;o++){var a=n.channels[o],i=n.samplers[a.sampler];if(i){var s=null,l=null;n.parameters?(s=n.parameters[i.input],l=n.parameters[i.output]):(s=i.input,l=i.output);var u=m.GetBufferFromAccessor(e,e.accessors[s]),c=m.GetBufferFromAccessor(e,e.accessors[l]),f=a.target.id,d=e.scene.getNodeByID(f);if(null===d&&(d=e.scene.getNodeByName(f)),null!==d){var h=d instanceof p.Bone,_=a.target.path,y=A.indexOf(_);-1!==y&&(_=g[y]);var b=p.Animation.ANIMATIONTYPE_MATRIX;h||("rotationQuaternion"===_?(b=p.Animation.ANIMATIONTYPE_QUATERNION,d.rotationQuaternion=new p.Quaternion):b=p.Animation.ANIMATIONTYPE_VECTOR3);var v=null,T=[],x=0,E=!1;h&&r&&r.getKeys().length===u.length&&(v=r,E=!0),E||(e.scene._blockEntityCollection=e.forAssetContainer,v=new p.Animation(t,h?"_matrix":_,1,b,p.Animation.ANIMATIONLOOPMODE_CYCLE),e.scene._blockEntityCollection=!1);for(var L=0;L<u.length;L++){var O=null;if("rotationQuaternion"===_?(O=p.Quaternion.FromArray([c[x],c[x+1],c[x+2],c[x+3]]),x+=4):(O=p.Vector3.FromArray([c[x],c[x+1],c[x+2]]),x+=3),h){var M=d,S=p.Vector3.Zero(),w=new p.Quaternion,C=p.Vector3.Zero(),N=M.getBaseMatrix();E&&r&&(N=r.getKeys()[L].value),N.decompose(C,w,S),"position"===_?S=O:"rotationQuaternion"===_?w=O:C=O,O=p.Matrix.Compose(C,w,S)}E?r&&(r.getKeys()[L].value=O):T.push({frame:u[L],value:O})}!E&&v&&(v.setKeys(T),d.animations.push(v)),r=v,e.scene.stopAnimation(d),e.scene.beginAnimation(d,0,u[u.length-1],!0,1)}else p.Tools.Warn("Creating animation named "+t+". But cannot find node named "+f+" to attach to")}}}}(e);for(n=0;n<e.scene.skeletons.length;n++){var o=e.scene.skeletons[n];e.scene.beginAnimation(o,0,Number.MAX_VALUE,!0,1)}},V=function(e,t,n,r,o,a){return function(i){!function(e,t,n,r,o){var a=r.values||n.parameters,i=n.uniforms;for(var l in o){var u=o[l],c=u.type,f=a[i[l]];if(void 0===f&&(f=u.value),f){var d=function(e){return function(n){u.value&&e&&(t.setTexture(e,n),delete o[e])}};c===s.SAMPLER_2D?k.LoadTextureAsync(e,r.values?f:u.value,d(l),function(){return d(null)}):u.value&&m.SetUniform(t,l,r.values?f:u.value,c)&&delete o[l]}}}(e,t,n,r,o),t.onBind=function(i){!function(e,t,n,r,o,a,i){var l=a.values||o.parameters;for(var u in n){var c=n[u],f=c.type;if(f===s.FLOAT_MAT2||f===s.FLOAT_MAT3||f===s.FLOAT_MAT4)if(!c.semantic||c.source||c.node){if(c.semantic&&(c.source||c.node)){var d=t.scene.getNodeByName(c.source||c.node||"");if(null===d&&(d=t.scene.getNodeByID(c.source||c.node||"")),null===d)continue;m.SetMatrix(t.scene,d,c,u,r.getEffect())}}else m.SetMatrix(t.scene,e,c,u,r.getEffect());else{var h=l[o.uniforms[u]];if(!h)continue;if(f===s.SAMPLER_2D){var p=t.textures[a.values?h:c.value].babylonTexture;if(null==p)continue;r.getEffect().setTexture(u,p)}else m.SetUniform(r.getEffect(),u,h,f)}}i(r)}(i,e,o,t,n,r,a)}}},B=function(e,t,n){for(var r in t.uniforms){var o=t.uniforms[r],a=t.parameters[o];if(e.currentIdentifier===r&&a.semantic&&!a.source&&!a.node){var i=b.indexOf(a.semantic);if(-1!==i)return delete n[r],v[i]}}return e.currentIdentifier},D=function(e){for(var t in e.materials)k.LoadMaterialAsync(e,t,function(e){},function(){})},G=function(){function e(){}return e.CreateRuntime=function(e,t,n){var r={extensions:{},accessors:{},buffers:{},bufferViews:{},meshes:{},lights:{},cameras:{},nodes:{},images:{},textures:{},shaders:{},programs:{},samplers:{},techniques:{},materials:{},animations:{},skins:{},extensionsUsed:[],scenes:{},buffersCount:0,shaderscount:0,scene:t,rootUrl:n,loadedBufferCount:0,loadedBufferViews:{},loadedShaderCount:0,importOnlyMeshes:!1,dummyNodes:[],forAssetContainer:!1};return e.extensions&&T(e.extensions,"extensions",r),e.extensionsUsed&&T(e.extensionsUsed,"extensionsUsed",r),e.buffers&&function(e,t){for(var n in e){var r=e[n];t.buffers[n]=r,t.buffersCount++}}(e.buffers,r),e.bufferViews&&T(e.bufferViews,"bufferViews",r),e.accessors&&T(e.accessors,"accessors",r),e.meshes&&T(e.meshes,"meshes",r),e.lights&&T(e.lights,"lights",r),e.cameras&&T(e.cameras,"cameras",r),e.nodes&&T(e.nodes,"nodes",r),e.images&&T(e.images,"images",r),e.textures&&T(e.textures,"textures",r),e.shaders&&function(e,t){for(var n in e){var r=e[n];t.shaders[n]=r,t.shaderscount++}}(e.shaders,r),e.programs&&T(e.programs,"programs",r),e.samplers&&T(e.samplers,"samplers",r),e.techniques&&T(e.techniques,"techniques",r),e.materials&&T(e.materials,"materials",r),e.animations&&T(e.animations,"animations",r),e.skins&&T(e.skins,"skins",r),e.scenes&&(r.scenes=e.scenes),e.scene&&e.scenes&&(r.currentScene=e.scenes[e.scene]),r},e.LoadBufferAsync=function(e,t,n,r,o){var a=e.buffers[t];p.Tools.IsBase64(a.uri)?setTimeout(function(){return n(new Uint8Array(p.Tools.DecodeBase64(a.uri)))}):p.Tools.LoadFile(e.rootUrl+a.uri,function(e){return n(new Uint8Array(e))},o,void 0,!0,function(e){e&&r(e.status+" "+e.statusText)})},e.LoadTextureBufferAsync=function(e,t,n,r){var o=e.textures[t];if(o&&o.source)if(o.babylonTexture)n(null);else{var a=e.images[o.source];p.Tools.IsBase64(a.uri)?setTimeout(function(){return n(new Uint8Array(p.Tools.DecodeBase64(a.uri)))}):p.Tools.LoadFile(e.rootUrl+a.uri,function(e){return n(new Uint8Array(e))},void 0,void 0,!0,function(e){e&&r(e.status+" "+e.statusText)})}else r("")},e.CreateTextureAsync=function(e,t,n,r,o){var a=e.textures[t];if(a.babylonTexture)r(a.babylonTexture);else{var i=e.samplers[a.sampler],s=i.minFilter===u.NEAREST_MIPMAP_NEAREST||i.minFilter===u.NEAREST_MIPMAP_LINEAR||i.minFilter===u.LINEAR_MIPMAP_NEAREST||i.minFilter===u.LINEAR_MIPMAP_LINEAR,l=p.Texture.BILINEAR_SAMPLINGMODE,c=null==n?new Blob:new Blob([n]),f=URL.createObjectURL(c),d=function(){return URL.revokeObjectURL(f)},h=new p.Texture(f,e.scene,!s,!0,l,d,d);void 0!==i.wrapS&&(h.wrapU=m.GetWrapMode(i.wrapS)),void 0!==i.wrapT&&(h.wrapV=m.GetWrapMode(i.wrapT)),h.name=t,a.babylonTexture=h,r(h)}},e.LoadShaderStringAsync=function(e,t,n,r){var o=e.shaders[t];if(p.Tools.IsBase64(o.uri)){var a=atob(o.uri.split(",")[1]);n&&n(a)}else p.Tools.LoadFile(e.rootUrl+o.uri,n,void 0,void 0,!1,function(e){e&&r&&r(e.status+" "+e.statusText)})},e.LoadMaterialAsync=function(e,t,n,r){var o=e.materials[t];if(o.technique){var a=e.techniques[o.technique];if(!a){e.scene._blockEntityCollection=e.forAssetContainer;var i=new p.StandardMaterial(t,e.scene);return e.scene._blockEntityCollection=!1,i.diffuseColor=new p.Color3(.5,.5,.5),i.sideOrientation=p.Material.CounterClockWiseSideOrientation,void n(i)}var l=e.programs[a.program],u=a.states,c=p.Effect.ShadersStore[l.vertexShader+"VertexShader"],m=p.Effect.ShadersStore[l.fragmentShader+"PixelShader"],_="",A="",g=new y(c),T=new y(m),x={},L=[],O=[],M=[];for(var S in a.uniforms){var w=a.uniforms[S],C=a.parameters[w];if(x[S]=C,!C.semantic||C.node||C.source)C.type===s.SAMPLER_2D?M.push(S):L.push(S);else{var N=b.indexOf(C.semantic);-1!==N?(L.push(v[N]),delete x[S]):L.push(S)}}for(var P in a.attributes){var R=a.attributes[P];if((D=a.parameters[R]).semantic){var I=E(D);I&&O.push(I)}}for(;!g.isEnd()&&g.getNextToken();){if(g.currentToken===h.IDENTIFIER){var F=!1;for(var P in a.attributes){R=a.attributes[P];var D=a.parameters[R];if(g.currentIdentifier===P&&D.semantic){_+=E(D),F=!0;break}}F||(_+=B(g,a,x))}else _+=g.currentString}for(;!T.isEnd()&&T.getNextToken();){T.currentToken===h.IDENTIFIER?A+=B(T,a,x):A+=T.currentString}var G={vertex:l.vertexShader+t,fragment:l.fragmentShader+t},U={attributes:O,uniforms:L,samplers:M,needAlphaBlending:u&&u.enable&&-1!==u.enable.indexOf(3042)};p.Effect.ShadersStore[l.vertexShader+t+"VertexShader"]=_,p.Effect.ShadersStore[l.fragmentShader+t+"PixelShader"]=A;var k=new p.ShaderMaterial(t,e.scene,G,U);if(k.onError=function(e,t,n){return function(r,o){t.dispose(!0),n("Cannot compile program named "+e.name+". Error: "+o+". Default material will be applied")}}(l,k,r),k.onCompiled=V(e,k,a,o,x,n),k.sideOrientation=p.Material.CounterClockWiseSideOrientation,u&&u.functions){var H=u.functions;H.cullFace&&H.cullFace[0]!==f.BACK&&(k.backFaceCulling=!1);var j=H.blendFuncSeparate;j&&(j[0]===d.SRC_ALPHA&&j[1]===d.ONE_MINUS_SRC_ALPHA&&j[2]===d.ONE&&j[3]===d.ONE?k.alphaMode=p.Constants.ALPHA_COMBINE:j[0]===d.ONE&&j[1]===d.ONE&&j[2]===d.ZERO&&j[3]===d.ONE?k.alphaMode=p.Constants.ALPHA_ONEONE:j[0]===d.SRC_ALPHA&&j[1]===d.ONE&&j[2]===d.ZERO&&j[3]===d.ONE?k.alphaMode=p.Constants.ALPHA_ADD:j[0]===d.ZERO&&j[1]===d.ONE_MINUS_SRC_COLOR&&j[2]===d.ONE&&j[3]===d.ONE?k.alphaMode=p.Constants.ALPHA_SUBTRACT:j[0]===d.DST_COLOR&&j[1]===d.ZERO&&j[2]===d.ONE&&j[3]===d.ONE?k.alphaMode=p.Constants.ALPHA_MULTIPLY:j[0]===d.SRC_ALPHA&&j[1]===d.ONE_MINUS_SRC_COLOR&&j[2]===d.ONE&&j[3]===d.ONE&&(k.alphaMode=p.Constants.ALPHA_MAXIMIZED))}}else r&&r("No technique found.")},e}(),U=function(){function e(){this.state=null}return e.RegisterExtension=function(t){e.Extensions[t.name]?p.Tools.Error('Tool with the same name "'+t.name+'" already exists'):e.Extensions[t.name]=t},e.prototype.dispose=function(){},e.prototype._importMeshAsync=function(e,t,n,r,o,a,i,s){var l=this;return t.useRightHandedSystem=!0,k.LoadRuntimeAsync(t,n,r,function(t){t.forAssetContainer=o,t.importOnlyMeshes=!0,""===e?t.importMeshesNames=[]:"string"==typeof e?t.importMeshesNames=[e]:!e||e instanceof Array?(t.importMeshesNames=[],p.Tools.Warn("Argument meshesNames must be of type string or string[]")):t.importMeshesNames=[e],l._createNodes(t);var n=new Array,r=new Array;for(var s in t.nodes){var u=t.nodes[s];u.babylonNode instanceof p.AbstractMesh&&n.push(u.babylonNode)}for(var c in t.skins){var f=t.skins[c];f.babylonSkeleton instanceof p.Skeleton&&r.push(f.babylonSkeleton)}l._loadBuffersAsync(t,function(){l._loadShadersAsync(t,function(){D(t),F(t),!_.GLTFFileLoader.IncrementalLoading&&a&&a(n,r)})},i),_.GLTFFileLoader.IncrementalLoading&&a&&a(n,r)},s),!0},e.prototype.importMeshAsync=function(e,t,n,r,o,a){var i=this;return new Promise(function(s,l){i._importMeshAsync(e,t,r,o,n,function(e,t){s({meshes:e,particleSystems:[],skeletons:t,animationGroups:[],lights:[],transformNodes:[]})},a,function(e){l(new Error(e))})})},e.prototype._loadAsync=function(e,t,n,r,o,a,i){var s=this;e.useRightHandedSystem=!0,k.LoadRuntimeAsync(e,t,n,function(e){k.LoadRuntimeExtensionsAsync(e,function(){s._createNodes(e),s._loadBuffersAsync(e,function(){s._loadShadersAsync(e,function(){D(e),F(e),_.GLTFFileLoader.IncrementalLoading||o()})}),_.GLTFFileLoader.IncrementalLoading&&o()},i)},i)},e.prototype.loadAsync=function(e,t,n,r){var o=this;return new Promise(function(a,i){o._loadAsync(e,t,n,!1,function(){a()},r,function(e){i(new Error(e))})})},e.prototype._loadShadersAsync=function(e,t){var n=!1,r=function(n,r){k.LoadShaderStringAsync(e,n,function(o){o instanceof ArrayBuffer||(e.loadedShaderCount++,o&&(p.Effect.ShadersStore[n+(r.type===i.VERTEX?"VertexShader":"PixelShader")]=o),e.loadedShaderCount===e.shaderscount&&t())},function(){p.Tools.Error("Error when loading shader program named "+n+" located at "+r.uri)})};for(var o in e.shaders){n=!0;var a=e.shaders[o];a?r.bind(this,o,a)():p.Tools.Error("No shader named: "+o)}n||t()},e.prototype._loadBuffersAsync=function(e,t,n){var r=!1,o=function(n,r){k.LoadBufferAsync(e,n,function(o){e.loadedBufferCount++,o&&(o.byteLength!=e.buffers[n].byteLength&&p.Tools.Error("Buffer named "+n+" is length "+o.byteLength+". Expected: "+r.byteLength),e.loadedBufferViews[n]=o),e.loadedBufferCount===e.buffersCount&&t()},function(){p.Tools.Error("Error when loading buffer named "+n+" located at "+r.uri)})};for(var a in e.buffers){r=!0;var i=e.buffers[a];i?o.bind(this,a,i)():p.Tools.Error("No buffer named: "+a)}r||t()},e.prototype._createNodes=function(e){var t=e.currentScene;if(t)for(var n=0;n<t.nodes.length;n++)I(e,t.nodes[n],null);else for(var r in e.scenes){t=e.scenes[r];for(n=0;n<t.nodes.length;n++)I(e,t.nodes[n],null)}},e.Extensions={},e}(),k=function(){function e(e){this._name=e}return Object.defineProperty(e.prototype,"name",{get:function(){return this._name},enumerable:!0,configurable:!0}),e.prototype.loadRuntimeAsync=function(e,t,n,r,o){return!1},e.prototype.loadRuntimeExtensionsAsync=function(e,t,n){return!1},e.prototype.loadBufferAsync=function(e,t,n,r,o){return!1},e.prototype.loadTextureBufferAsync=function(e,t,n,r){return!1},e.prototype.createTextureAsync=function(e,t,n,r,o){return!1},e.prototype.loadShaderStringAsync=function(e,t,n,r){return!1},e.prototype.loadMaterialAsync=function(e,t,n,r){return!1},e.LoadRuntimeAsync=function(t,n,r,o,a){e.ApplyExtensions(function(e){return e.loadRuntimeAsync(t,n,r,o,a)},function(){setTimeout(function(){o&&o(G.CreateRuntime(n.json,t,r))})})},e.LoadRuntimeExtensionsAsync=function(t,n,r){e.ApplyExtensions(function(e){return e.loadRuntimeExtensionsAsync(t,n,r)},function(){setTimeout(function(){n()})})},e.LoadBufferAsync=function(t,n,r,o,a){e.ApplyExtensions(function(e){return e.loadBufferAsync(t,n,r,o,a)},function(){G.LoadBufferAsync(t,n,r,o,a)})},e.LoadTextureAsync=function(t,n,r,o){e.LoadTextureBufferAsync(t,n,function(a){a&&e.CreateTextureAsync(t,n,a,r,o)},o)},e.LoadShaderStringAsync=function(t,n,r,o){e.ApplyExtensions(function(e){return e.loadShaderStringAsync(t,n,r,o)},function(){G.LoadShaderStringAsync(t,n,r,o)})},e.LoadMaterialAsync=function(t,n,r,o){e.ApplyExtensions(function(e){return e.loadMaterialAsync(t,n,r,o)},function(){G.LoadMaterialAsync(t,n,r,o)})},e.LoadTextureBufferAsync=function(t,n,r,o){e.ApplyExtensions(function(e){return e.loadTextureBufferAsync(t,n,r,o)},function(){G.LoadTextureBufferAsync(t,n,r,o)})},e.CreateTextureAsync=function(t,n,r,o,a){e.ApplyExtensions(function(e){return e.createTextureAsync(t,n,r,o,a)},function(){G.CreateTextureAsync(t,n,r,o,a)})},e.ApplyExtensions=function(e,t){for(var n in U.Extensions){if(e(U.Extensions[n]))return}t()},e}();_.GLTFFileLoader._CreateGLTF1Loader=function(){return new U};var H=function(e){function t(){return e.call(this,"KHR_binary_glTF")||this}return o(t,e),t.prototype.loadRuntimeAsync=function(e,t,n,r,o){var a=t.json.extensionsUsed;return!(!a||-1===a.indexOf(this.name)||!t.bin)&&(this._bin=t.bin,r(G.CreateRuntime(t.json,e,n)),!0)},t.prototype.loadBufferAsync=function(e,t,n,r){return-1!==e.extensionsUsed.indexOf(this.name)&&("binary_glTF"===t&&(this._bin.readAsync(0,this._bin.byteLength).then(n,function(e){return r(e.message)}),!0))},t.prototype.loadTextureBufferAsync=function(e,t,n,r){var o=e.textures[t],i=e.images[o.source];if(!(i.extensions&&this.name in i.extensions))return!1;var s=i.extensions[this.name],l=e.bufferViews[s.bufferView];return n(m.GetBufferFromBufferView(e,l,0,l.byteLength,a.UNSIGNED_BYTE)),!0},t.prototype.loadShaderStringAsync=function(e,t,n,r){var o=e.shaders[t];if(!(o.extensions&&this.name in o.extensions))return!1;var i=o.extensions[this.name],s=e.bufferViews[i.bufferView],l=m.GetBufferFromBufferView(e,s,0,s.byteLength,a.UNSIGNED_BYTE);return setTimeout(function(){var e=m.DecodeBufferToText(l);n(e)}),!0},t}(k);U.RegisterExtension(new H);var j=function(e){function t(){return e.call(this,"KHR_materials_common")||this}return o(t,e),t.prototype.loadRuntimeExtensionsAsync=function(e,t,n){if(!e.extensions)return!1;var r=e.extensions[this.name];if(!r)return!1;var o=r.lights;if(o)for(var a in o){var i=o[a];switch(i.type){case"ambient":var s=new p.HemisphericLight(i.name,new p.Vector3(0,1,0),e.scene),l=i.ambient;l&&(s.diffuse=p.Color3.FromArray(l.color||[1,1,1]));break;case"point":var u=new p.PointLight(i.name,new p.Vector3(10,10,10),e.scene),c=i.point;c&&(u.diffuse=p.Color3.FromArray(c.color||[1,1,1]));break;case"directional":var f=new p.DirectionalLight(i.name,new p.Vector3(0,-1,0),e.scene),d=i.directional;d&&(f.diffuse=p.Color3.FromArray(d.color||[1,1,1]));break;case"spot":var h=i.spot;if(h)new p.SpotLight(i.name,new p.Vector3(0,10,0),new p.Vector3(0,-1,0),h.fallOffAngle||Math.PI,h.fallOffExponent||0,e.scene).diffuse=p.Color3.FromArray(h.color||[1,1,1]);break;default:p.Tools.Warn('GLTF Material Common extension: light type "'+i.type+"” not supported")}}return!1},t.prototype.loadMaterialAsync=function(e,t,n,r){var o=e.materials[t];if(!o||!o.extensions)return!1;var a=o.extensions[this.name];if(!a)return!1;var i=new p.StandardMaterial(t,e.scene);return i.sideOrientation=p.Material.CounterClockWiseSideOrientation,"CONSTANT"===a.technique&&(i.disableLighting=!0),i.backFaceCulling=void 0!==a.doubleSided&&!a.doubleSided,i.alpha=void 0===a.values.transparency?1:a.values.transparency,i.specularPower=void 0===a.values.shininess?0:a.values.shininess,"string"==typeof a.values.ambient?this._loadTexture(e,a.values.ambient,i,"ambientTexture",r):i.ambientColor=p.Color3.FromArray(a.values.ambient||[0,0,0]),"string"==typeof a.values.diffuse?this._loadTexture(e,a.values.diffuse,i,"diffuseTexture",r):i.diffuseColor=p.Color3.FromArray(a.values.diffuse||[0,0,0]),"string"==typeof a.values.emission?this._loadTexture(e,a.values.emission,i,"emissiveTexture",r):i.emissiveColor=p.Color3.FromArray(a.values.emission||[0,0,0]),"string"==typeof a.values.specular?this._loadTexture(e,a.values.specular,i,"specularTexture",r):i.specularColor=p.Color3.FromArray(a.values.specular||[0,0,0]),!0},t.prototype._loadTexture=function(e,t,n,r,o){G.LoadTextureBufferAsync(e,t,function(a){G.CreateTextureAsync(e,t,a,function(e){return n[r]=e},o)},o)},t}(k);U.RegisterExtension(new j),n.d(t,"GLTFBinaryExtension",function(){return H}),n.d(t,"GLTFLoaderBase",function(){return G}),n.d(t,"GLTFLoader",function(){return U}),n.d(t,"GLTFLoaderExtension",function(){return k}),n.d(t,"EComponentType",function(){return a}),n.d(t,"EShaderType",function(){return i}),n.d(t,"EParameterType",function(){return s}),n.d(t,"ETextureWrapMode",function(){return l}),n.d(t,"ETextureFilterType",function(){return u}),n.d(t,"ETextureFormat",function(){return c}),n.d(t,"ECullingType",function(){return f}),n.d(t,"EBlendingFunction",function(){return d}),n.d(t,"GLTFUtils",function(){return m}),n.d(t,"GLTFMaterialsCommonExtension",function(){return j})},function(e,t,n){"use strict";n.r(t);var r=n(0),o=function(){function e(){this.materials=[]}return e.prototype.parseMTL=function(t,n,o,a){if(!(n instanceof ArrayBuffer)){for(var i,s=n.split("\n"),l=/\s+/,u=null,c=0;c<s.length;c++){var f=s[c].trim();if(0!==f.length&&"#"!==f.charAt(0)){var d=f.indexOf(" "),h=d>=0?f.substring(0,d):f;h=h.toLowerCase();var p=d>=0?f.substring(d+1).trim():"";"newmtl"===h?(u&&this.materials.push(u),t._blockEntityCollection=a,u=new r.StandardMaterial(p,t),t._blockEntityCollection=!1):"kd"===h&&u?(i=p.split(l,3).map(parseFloat),u.diffuseColor=r.Color3.FromArray(i)):"ka"===h&&u?(i=p.split(l,3).map(parseFloat),u.ambientColor=r.Color3.FromArray(i)):"ks"===h&&u?(i=p.split(l,3).map(parseFloat),u.specularColor=r.Color3.FromArray(i)):"ke"===h&&u?(i=p.split(l,3).map(parseFloat),u.emissiveColor=r.Color3.FromArray(i)):"ns"===h&&u?u.specularPower=parseFloat(p):"d"===h&&u?u.alpha=parseFloat(p):"map_ka"===h&&u?u.ambientTexture=e._getTexture(o,p,t):"map_kd"===h&&u?u.diffuseTexture=e._getTexture(o,p,t):"map_ks"===h&&u?u.specularTexture=e._getTexture(o,p,t):"map_ns"===h||("map_bump"===h&&u?u.bumpTexture=e._getTexture(o,p,t):"map_d"===h&&u&&(u.opacityTexture=e._getTexture(o,p,t)))}}u&&this.materials.push(u)}},e._getTexture=function(t,n,o){if(!n)return null;var a=t;if("file:"===t){var i=n.lastIndexOf("\\");-1===i&&(i=n.lastIndexOf("/")),a+=i>-1?n.substr(i+1):n}else a+=n;return new r.Texture(a,o,!1,e.INVERT_TEXTURE_Y)},e.INVERT_TEXTURE_Y=!0,e}(),a=function(){function e(t){this.name="obj",this.extensions=".obj",this.obj=/^o/,this.group=/^g/,this.mtllib=/^mtllib /,this.usemtl=/^usemtl /,this.smooth=/^s /,this.vertexPattern=/v( +[\d|\.|\+|\-|e|E]+){3,7}/,this.normalPattern=/vn( +[\d|\.|\+|\-|e|E]+)( +[\d|\.|\+|\-|e|E]+)( +[\d|\.|\+|\-|e|E]+)/,this.uvPattern=/vt( +[\d|\.|\+|\-|e|E]+)( +[\d|\.|\+|\-|e|E]+)/,this.facePattern1=/f\s+(([\d]{1,}[\s]?){3,})+/,this.facePattern2=/f\s+((([\d]{1,}\/[\d]{1,}[\s]?){3,})+)/,this.facePattern3=/f\s+((([\d]{1,}\/[\d]{1,}\/[\d]{1,}[\s]?){3,})+)/,this.facePattern4=/f\s+((([\d]{1,}\/\/[\d]{1,}[\s]?){3,})+)/,this.facePattern5=/f\s+(((-[\d]{1,}\/-[\d]{1,}\/-[\d]{1,}[\s]?){3,})+)/,this._forAssetContainer=!1,this._meshLoadOptions=t||e.currentMeshLoadOptions}return Object.defineProperty(e,"INVERT_TEXTURE_Y",{get:function(){return o.INVERT_TEXTURE_Y},set:function(e){o.INVERT_TEXTURE_Y=e},enumerable:!0,configurable:!0}),Object.defineProperty(e,"currentMeshLoadOptions",{get:function(){return{ComputeNormals:e.COMPUTE_NORMALS,ImportVertexColors:e.IMPORT_VERTEX_COLORS,InvertY:e.INVERT_Y,InvertTextureY:e.INVERT_TEXTURE_Y,UVScaling:e.UV_SCALING,MaterialLoadingFailsSilently:e.MATERIAL_LOADING_FAILS_SILENTLY,OptimizeWithUV:e.OPTIMIZE_WITH_UV,SkipMaterials:e.SKIP_MATERIALS}},enumerable:!0,configurable:!0}),e.prototype._loadMTL=function(e,t,n,o){var a=r.Tools.BaseUrl+t+e;r.Tools.LoadFile(a,n,void 0,void 0,!1,function(e,t){o(a,t)})},e.prototype.createPlugin=function(){return new e(e.currentMeshLoadOptions)},e.prototype.canDirectLoad=function(e){return!1},e.prototype.importMeshAsync=function(e,t,n,r,o,a){return this._parseSolid(e,t,n,r).then(function(e){return{meshes:e,particleSystems:[],skeletons:[],animationGroups:[]}})},e.prototype.loadAsync=function(e,t,n,r,o){return this.importMeshAsync(null,e,t,n,r).then(function(){})},e.prototype.loadAssetContainerAsync=function(e,t,n,o,a){var i=this;return this._forAssetContainer=!0,this.importMeshAsync(null,e,t,n).then(function(t){var n=new r.AssetContainer(e);return t.meshes.forEach(function(e){return n.meshes.push(e)}),t.meshes.forEach(function(e){var t=e.material;t&&(-1==n.materials.indexOf(t)&&(n.materials.push(t),t.getActiveTextures().forEach(function(e){-1==n.textures.indexOf(e)&&n.textures.push(e)})))}),i._forAssetContainer=!1,n}).catch(function(e){throw i._forAssetContainer=!1,e})},e.prototype._parseSolid=function(t,n,a,i){for(var s,l=this,u=[],c=[],f=[],d=[],h=[],p=[],m=[],_=[],y=[],b=[],v=[],A=0,g=!1,T=[],x=[],E=[],L=[],O=[],M="",S="",w=new o,C=1,N=!0,P=new r.Color4(.5,.5,.5,1),R=function(e,t,n,r,o,a,i){var s;-1===(s=l._meshLoadOptions.OptimizeWithUV?function(e,t){e[t[0]]||(e[t[0]]={normals:[],idx:[],uv:[]});var n=e[t[0]].normals.indexOf(t[1]);return 1!=n&&t[2]===e[t[0]].uv[n]?e[t[0]].idx[n]:-1}(v,[e,n,t]):function(e,t){e[t[0]]||(e[t[0]]={normals:[],idx:[]});var n=e[t[0]].normals.indexOf(t[1]);return-1===n?-1:e[t[0]].idx[n]}(v,[e,n]))?(p.push(m.length),m.push(r),_.push(o),b.push(a),void 0!==i&&y.push(i),v[e].normals.push(n),v[e].idx.push(A++),l._meshLoadOptions.OptimizeWithUV&&v[e].uv.push(t)):p.push(s)},I=function(){for(var e=0;e<m.length;e++)T.push(m[e].x,m[e].y,m[e].z),E.push(b[e].x,b[e].y,b[e].z),L.push(_[e].x,_[e].y);!0===l._meshLoadOptions.ImportVertexColors&&x.push(y[e].r,y[e].g,y[e].b,y[e].a),m=[],b=[],_=[],y=[],v=[],A=0},F=function(e,t){for(var n=t;n<e.length-1;n++)O.push(e[0],e[n],e[n+1])},V=function(e,t){F(e,t);for(var n=0;n<O.length;n++){var o=parseInt(O[n])-1;R(o,0,0,u[o],r.Vector2.Zero(),r.Vector3.Up(),!0===l._meshLoadOptions.ImportVertexColors?d[o]:void 0)}O=[]},B=function(e,t){F(e,t);for(var n=0;n<O.length;n++){var o=O[n].split("/"),a=parseInt(o[0])-1,i=parseInt(o[1])-1;R(a,i,0,u[a],f[i],r.Vector3.Up(),!0===l._meshLoadOptions.ImportVertexColors?d[a]:void 0)}O=[]},D=function(e,t){F(e,t);for(var n=0;n<O.length;n++){var r=O[n].split("/"),o=parseInt(r[0])-1,a=parseInt(r[1])-1,i=parseInt(r[2])-1;R(o,a,i,u[o],f[a],c[i])}O=[]},G=function(e,t){F(e,t);for(var n=0;n<O.length;n++){var o=O[n].split("//"),a=parseInt(o[0])-1,i=parseInt(o[1])-1;R(a,1,i,u[a],r.Vector2.Zero(),c[i],!0===l._meshLoadOptions.ImportVertexColors?d[a]:void 0)}O=[]},U=function(e,t){F(e,t);for(var n=0;n<O.length;n++){var r=O[n].split("/"),o=u.length+parseInt(r[0]),a=f.length+parseInt(r[1]),i=c.length+parseInt(r[2]);R(o,a,i,u[o],f[a],c[i],!0===l._meshLoadOptions.ImportVertexColors?d[o]:void 0)}O=[]},k=function(){h.length>0&&(s=h[h.length-1],I(),p.reverse(),s.indices=p.slice(),s.positions=T.slice(),s.normals=E.slice(),s.uvs=L.slice(),!0===l._meshLoadOptions.ImportVertexColors&&(s.colors=x.slice()),p=[],T=[],x=[],E=[],L=[])},H=a.split("\n"),j=0;j<H.length;j++){var K,W=H[j].trim().replace(/\s\s/g," ");if(0!==W.length&&"#"!==W.charAt(0))if(this.vertexPattern.test(W))K=W.match(/[^ ]+/g),u.push(new r.Vector3(parseFloat(K[1]),parseFloat(K[2]),parseFloat(K[3]))),!0===this._meshLoadOptions.ImportVertexColors&&(K.length>=7?d.push(new r.Color4(parseFloat(K[4]),parseFloat(K[5]),parseFloat(K[6]),7===K.length||void 0===K[7]?1:parseFloat(K[7]))):d.push(P));else if(null!==(K=this.normalPattern.exec(W)))c.push(new r.Vector3(parseFloat(K[1]),parseFloat(K[2]),parseFloat(K[3])));else if(null!==(K=this.uvPattern.exec(W)))f.push(new r.Vector2(parseFloat(K[1])*e.UV_SCALING.x,parseFloat(K[2])*e.UV_SCALING.y));else if(null!==(K=this.facePattern3.exec(W)))D(K[1].trim().split(" "),1);else if(null!==(K=this.facePattern4.exec(W)))G(K[1].trim().split(" "),1);else if(null!==(K=this.facePattern5.exec(W)))U(K[1].trim().split(" "),1);else if(null!==(K=this.facePattern2.exec(W)))B(K[1].trim().split(" "),1);else if(null!==(K=this.facePattern1.exec(W)))V(K[1].trim().split(" "),1);else if(this.group.test(W)||this.obj.test(W)){var Y={name:W.substring(2).trim(),indices:void 0,positions:void 0,normals:void 0,uvs:void 0,colors:void 0,materialName:""};k(),h.push(Y),g=!0,N=!0,C=1}else if(this.usemtl.test(W)){if(M=W.substring(7).trim(),!N||!g){k();Y={name:"mesh_mm"+C.toString(),indices:void 0,positions:void 0,normals:void 0,uvs:void 0,colors:void 0,materialName:M};C++,h.push(Y),g=!0}g&&N&&(h[h.length-1].materialName=M,N=!1)}else this.mtllib.test(W)?S=W.substring(7).trim():this.smooth.test(W)||console.log("Unhandled expression at line : "+W)}g&&(s=h[h.length-1],p.reverse(),I(),s.indices=p,s.positions=T,s.normals=E,s.uvs=L,!0===this._meshLoadOptions.ImportVertexColors&&(s.colors=x)),g||(p.reverse(),I(),h.push({name:r.Geometry.RandomId(),indices:p,positions:T,colors:x,normals:E,uvs:L,materialName:M}));for(var J=[],q=new Array,Z=0;Z<h.length;Z++){if(t&&h[Z].name)if(t instanceof Array){if(-1===t.indexOf(h[Z].name))continue}else if(h[Z].name!==t)continue;s=h[Z],n._blockEntityCollection=this._forAssetContainer;var Q=new r.Mesh(h[Z].name,n);n._blockEntityCollection=!1,q.push(h[Z].materialName);var X=new r.VertexData;if(X.uvs=s.uvs,X.indices=s.indices,X.positions=s.positions,!0===this._meshLoadOptions.ComputeNormals){var z=new Array;r.VertexData.ComputeNormals(s.positions,s.indices,z),X.normals=z}else X.normals=s.normals;!0===this._meshLoadOptions.ImportVertexColors&&(X.colors=s.colors),X.applyToMesh(Q),this._meshLoadOptions.InvertY&&(Q.scaling.y*=-1),J.push(Q)}var $=[];return""!==S&&!1===this._meshLoadOptions.SkipMaterials&&$.push(new Promise(function(e,t){l._loadMTL(S,i,function(o){try{w.parseMTL(n,o,i,l._forAssetContainer);for(var a=0;a<w.materials.length;a++){for(var s,u=0,c=[];(s=q.indexOf(w.materials[a].name,u))>-1;)c.push(s),u=s+1;if(-1===s&&0===c.length)w.materials[a].dispose();else for(var f=0;f<c.length;f++)J[c[f]].material=w.materials[a]}e()}catch(n){r.Tools.Warn("Error processing MTL file: '"+S+"'"),l._meshLoadOptions.MaterialLoadingFailsSilently?e():t(n)}},function(n,o){r.Tools.Warn("Error downloading MTL file: '"+S+"'"),l._meshLoadOptions.MaterialLoadingFailsSilently?e():t(o)})})),Promise.all($).then(function(){return J})},e.OPTIMIZE_WITH_UV=!0,e.INVERT_Y=!1,e.IMPORT_VERTEX_COLORS=!1,e.COMPUTE_NORMALS=!1,e.UV_SCALING=new r.Vector2(1,1),e.SKIP_MATERIALS=!1,e.MATERIAL_LOADING_FAILS_SILENTLY=!0,e}();r.SceneLoader&&r.SceneLoader.RegisterPlugin(new a),n.d(t,"MTLFileLoader",function(){return o}),n.d(t,"OBJFileLoader",function(){return a})},function(e,t,n){"use strict";n.r(t);var r=n(0),o=function(){function e(){this.solidPattern=/solid (\S*)([\S\s]*)endsolid[ ]*(\S*)/g,this.facetsPattern=/facet([\s\S]*?)endfacet/g,this.normalPattern=/normal[\s]+([\-+]?[0-9]+\.?[0-9]*([eE][\-+]?[0-9]+)?)+[\s]+([\-+]?[0-9]*\.?[0-9]+([eE][\-+]?[0-9]+)?)+[\s]+([\-+]?[0-9]*\.?[0-9]+([eE][\-+]?[0-9]+)?)+/g,this.vertexPattern=/vertex[\s]+([\-+]?[0-9]+\.?[0-9]*([eE][\-+]?[0-9]+)?)+[\s]+([\-+]?[0-9]*\.?[0-9]+([eE][\-+]?[0-9]+)?)+[\s]+([\-+]?[0-9]*\.?[0-9]+([eE][\-+]?[0-9]+)?)+/g,this.name="stl",this.extensions={".stl":{isBinary:!0}}}return e.prototype.importMesh=function(e,t,n,o,a,i,s){var l;if("string"!=typeof n){if(this._isBinary(n)){var u=new r.Mesh("stlmesh",t);return this._parseBinary(u,n),a&&a.push(u),!0}for(var c=new Uint8Array(n),f="",d=0;d<n.byteLength;d++)f+=String.fromCharCode(c[d]);n=f}for(;l=this.solidPattern.exec(n);){var h=l[1];if(h!=l[3])return r.Tools.Error("Error in STL, solid name != endsolid name"),!1;if(e&&h)if(e instanceof Array){if(!e.indexOf(h))continue}else if(h!==e)continue;h=h||"stlmesh";u=new r.Mesh(h,t);this._parseASCII(u,l[2]),a&&a.push(u)}return!0},e.prototype.load=function(e,t,n){return this.importMesh(null,e,t,n,null,null,null)},e.prototype.loadAssetContainer=function(e,t,n,o){var a=new r.AssetContainer(e);return e._blockEntityCollection=!0,this.importMesh(null,e,t,n,a.meshes,null,null),e._blockEntityCollection=!1,a},e.prototype._isBinary=function(e){var t;if(50,84+50*(t=new DataView(e)).getUint32(80,!0)===t.byteLength)return!0;for(var n=t.byteLength,r=0;r<n;r++)if(t.getUint8(r)>127)return!0;return!1},e.prototype._parseBinary=function(e,t){for(var n=new DataView(t),o=n.getUint32(80,!0),a=0,i=new Float32Array(3*o*3),s=new Float32Array(3*o*3),l=new Uint32Array(3*o),u=0,c=0;c<o;c++){for(var f=84+50*c,d=n.getFloat32(f,!0),h=n.getFloat32(f+4,!0),p=n.getFloat32(f+8,!0),m=1;m<=3;m++){var _=f+12*m;i[a]=n.getFloat32(_,!0),i[a+2]=n.getFloat32(_+4,!0),i[a+1]=n.getFloat32(_+8,!0),s[a]=d,s[a+2]=h,s[a+1]=p,a+=3}l[u]=u++,l[u]=u++,l[u]=u++}e.setVerticesData(r.VertexBuffer.PositionKind,i),e.setVerticesData(r.VertexBuffer.NormalKind,s),e.setIndices(l),e.computeWorldMatrix(!0)},e.prototype._parseASCII=function(e,t){for(var n,o=[],a=[],i=[],s=0;n=this.facetsPattern.exec(t);){var l=n[1],u=this.normalPattern.exec(l);if(this.normalPattern.lastIndex=0,u){for(var c,f=[Number(u[1]),Number(u[5]),Number(u[3])];c=this.vertexPattern.exec(l);)o.push(Number(c[1]),Number(c[5]),Number(c[3])),a.push(f[0],f[1],f[2]);i.push(s++,s++,s++),this.vertexPattern.lastIndex=0}}this.facetsPattern.lastIndex=0,e.setVerticesData(r.VertexBuffer.PositionKind,o),e.setVerticesData(r.VertexBuffer.NormalKind,a),e.setIndices(i),e.computeWorldMatrix(!0)},e}();r.SceneLoader&&r.SceneLoader.RegisterPlugin(new o),n.d(t,"STLFileLoader",function(){return o})},function(e,t,n){"use strict";(function(e){var r=n(2),o=n(3);n.d(t,"a",function(){return r.GLTFFileLoader}),n.d(t,"b",function(){return r.GLTFLoaderAnimationStartMode}),n.d(t,"c",function(){return r.GLTFLoaderCoordinateSystemMode}),n.d(t,"d",function(){return r.GLTFLoaderState}),n.d(t,"e",function(){return o.GLTFValidation});var a=void 0!==e?e:"undefined"!=typeof window?window:void 0;if(void 0!==a){for(var i in a.BABYLON=a.BABYLON||{},r)a.BABYLON[i]=r[i];for(var i in o)a.BABYLON[i]=o[i]}}).call(this,n(4))},function(e,t){},function(e,t,n){"use strict";(function(e){var r=n(7);n.d(t,"a",function(){return r});var o=void 0!==e?e:"undefined"!=typeof window?window:void 0;if(void 0!==o)for(var a in o.BABYLON=o.BABYLON||{},o.BABYLON.GLTF1=o.BABYLON.GLTF1||{},r)o.BABYLON.GLTF1[a]=r[a]}).call(this,n(4))},function(e,t,n){"use strict";(function(e){var r=n(5),o=n(11),a=n(6);n.d(t,"a",function(){return a});var i=void 0!==e?e:"undefined"!=typeof window?window:void 0;if(void 0!==i){i.BABYLON=i.BABYLON||{};var s=i.BABYLON;s.GLTF2=s.GLTF2||{},s.GLTF2.Loader=s.GLTF2.Loader||{},s.GLTF2.Loader.Extensions=s.GLTF2.Loader.Extensions||{};var l=[];for(var u in r)s.GLTF2.Loader.Extensions[u]=r[u],l.push(u);for(var u in o)s.GLTF2.Loader[u]=o[u],l.push(u);for(var u in a)l.indexOf(u)>-1||(s.GLTF2[u]=a[u])}}).call(this,n(4))},function(e,t,n){"use strict";n.r(t),function(e){var r=n(8);n.d(t,"MTLFileLoader",function(){return r.MTLFileLoader}),n.d(t,"OBJFileLoader",function(){return r.OBJFileLoader});var o=void 0!==e?e:"undefined"!=typeof window?window:void 0;if(void 0!==o)for(var a in r)o.BABYLON[a]=r[a]}.call(this,n(4))},function(e,t,n){"use strict";n.r(t),function(e){var r=n(9);n.d(t,"STLFileLoader",function(){return r.STLFileLoader});var o=void 0!==e?e:"undefined"!=typeof window?window:void 0;if(void 0!==o)for(var a in r)o.BABYLON[a]=r[a]}.call(this,n(4))},,,,function(e,t,n){"use strict";n.r(t);n(2),n(3),n(7),n(6),n(8),n(9);var r=n(10),o=n(12),a=n(13),i=n(14),s=n(15);n.d(t,"GLTFLoaderCoordinateSystemMode",function(){return r.c}),n.d(t,"GLTFLoaderAnimationStartMode",function(){return r.b}),n.d(t,"GLTFLoaderState",function(){return r.d}),n.d(t,"GLTFFileLoader",function(){return r.a}),n.d(t,"GLTFValidation",function(){return r.e}),n.d(t,"GLTF1",function(){return o.a}),n.d(t,"GLTF2",function(){return a.a}),n.d(t,"MTLFileLoader",function(){return i.MTLFileLoader}),n.d(t,"OBJFileLoader",function(){return i.OBJFileLoader}),n.d(t,"STLFileLoader",function(){return s.STLFileLoader})}])});
-},{"babylonjs":"../node_modules/babylonjs/babylon.js"}],"mainCanvas.js":[function(require,module,exports) {
+},{"babylonjs":"../node_modules/babylonjs/babylon.js"}],"lights.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.initBabylonCanvas = void 0;
+exports.turnOverHeadLightOn = exports.turnOverHeadLightOff = exports.initLights = exports.lightingSettings = exports.shadowGenerator = void 0;
 
 var BABYLON = _interopRequireWildcard(require("babylonjs"));
-
-require("babylonjs-loaders");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-var canvas = document.getElementById("renderCanvas"); // Get the canvas element
+var sceneLights = {};
+var shadowGenerator;
+exports.shadowGenerator = shadowGenerator;
+var lightingSettings = {};
+exports.lightingSettings = lightingSettings;
+var overheadLight, outsideLight, dirLight;
 
-var engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
-
-var createScene = function createScene() {
-  var scene = new BABYLON.Scene(engine);
-  var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, new BABYLON.Vector3(0, 0, 1), scene);
-  camera.attachControl(canvas, true); // Environment Texture
-
+var initLights = function initLights(scene) {
+  // Environment Texture
   var nightHdr = new BABYLON.CubeTexture("img/night.env", scene);
   var dayHdr = new BABYLON.CubeTexture("img/day.env", scene);
   var sunsetHDR = new BABYLON.CubeTexture("img/sunset.env", scene);
-  var overheadLight = new BABYLON.PointLight("overheadLight", new BABYLON.Vector3(0, 0.7, 0.5), scene);
-  var outsideLight = new BABYLON.PointLight("outsideLight", new BABYLON.Vector3(0, 0, -0.2), scene);
-  var dirLight = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(-1, -2, -1), scene);
+  overheadLight = new BABYLON.PointLight("overheadLight", new BABYLON.Vector3(0, 0.7, 0.5), scene);
+  outsideLight = new BABYLON.PointLight("outsideLight", new BABYLON.Vector3(0, 0, -0.2), scene);
+  dirLight = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(-1, -2, -1), scene);
   dirLight.position = new BABYLON.Vector3(20, 40, 4);
 
   var nightLighting = function nightLighting() {
-    overheadLight.diffuse = new BABYLON.Color3(0.9, 0.9, 0.9);
-    overheadLight.intensity = 4;
+    overheadLight.diffuse = new BABYLON.Color3.FromHexString("#ad9f72");
+    overheadLight.intensity = 6;
     dirLight.intensity = 2;
-    dirLight.diffuse = new BABYLON.Color3(0.2, 0.7, 0.7);
+    dirLight.diffuse = new BABYLON.Color3.FromHexString("#478fed");
+    outsideLight.intensity = 0.5;
+    outsideLight.diffuse = new BABYLON.Color3.FromHexString("#478fed");
     scene.environmentTexture = nightHdr;
-    scene.imageProcessingConfiguration.exposure = 0.2;
+    scene.imageProcessingConfiguration.exposure = 0.1;
     scene.imageProcessingConfiguration.contrast = 1.0;
   };
 
   var dayLighting = function dayLighting() {
-    overheadLight.diffuse = new BABYLON.Color3(0.9, 0.9, 0.9);
-    overheadLight.intensity = 4;
-    dirLight.intensity = 2;
-    dirLight.diffuse = new BABYLON.Color3(0.2, 0.7, 0.7);
+    overheadLight.diffuse = new BABYLON.Color3.FromHexString("#c2b372");
+    overheadLight.intensity = 1;
+    dirLight.intensity = 4;
+    dirLight.diffuse = new BABYLON.Color3.FromHexString("#85f2e7");
+    outsideLight.diffuse = new BABYLON.Color3.FromHexString("#85f2e7");
+    outsideLight.intensity = 10;
     scene.environmentTexture = dayHdr;
     scene.imageProcessingConfiguration.exposure = 0.5;
     scene.imageProcessingConfiguration.contrast = 1.0;
@@ -982,63 +984,301 @@ var createScene = function createScene() {
 
   var sunsetLighting = function sunsetLighting() {
     overheadLight.diffuse = new BABYLON.Color3.FromHexString("#c4bdff");
-    overheadLight.intensity = 2;
+    overheadLight.intensity = 6;
     dirLight.intensity = 6;
     dirLight.diffuse = new BABYLON.Color3.FromHexString("#c97424");
     outsideLight.diffuse = new BABYLON.Color3.FromHexString("#e06234");
     outsideLight.intensity = 10;
     scene.environmentTexture = sunsetHDR;
-    scene.imageProcessingConfiguration.exposure = 0.3;
+    scene.imageProcessingConfiguration.exposure = 0.1;
     scene.imageProcessingConfiguration.contrast = 1.0;
   };
 
   sunsetLighting();
-  var shadowGenerator = new BABYLON.ShadowGenerator(1024, dirLight, true);
+  lightingSettings.setDay = dayLighting;
+  lightingSettings.setNight = nightLighting;
+  lightingSettings.setSunset = sunsetLighting;
+  exports.shadowGenerator = shadowGenerator = new BABYLON.ShadowGenerator(1024, dirLight, true);
   shadowGenerator.usePoissonSampling = true;
+};
 
-  var addShadowsToMeshes = function addShadowsToMeshes(container) {
-    var meshes = container.meshes;
-    meshes.forEach(function (mesh) {
-      shadowGenerator.getShadowMap().renderList.push(mesh);
-      mesh.receiveShadows = true;
-    });
-    container.addAllToScene();
+exports.initLights = initLights;
+
+var turnOverHeadLightOff = function turnOverHeadLightOff() {
+  overheadLight.setEnabled(false);
+};
+
+exports.turnOverHeadLightOff = turnOverHeadLightOff;
+
+var turnOverHeadLightOn = function turnOverHeadLightOn() {
+  overheadLight.setEnabled(true);
+};
+
+exports.turnOverHeadLightOn = turnOverHeadLightOn;
+},{"babylonjs":"../node_modules/babylonjs/babylon.js"}],"sceneContainers.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.hideSceneContainer = exports.showSceneContainer = exports.initScenes = exports.sceneContainers = void 0;
+
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
+
+var BABYLON = _interopRequireWildcard(require("babylonjs"));
+
+var _lights = require("./lights");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var sceneContainers = {};
+exports.sceneContainers = sceneContainers;
+
+var initScenes = /*#__PURE__*/function () {
+  var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(scene) {
+    var baseContainer, dayContainer, nightContainer, sunsetContainer;
+    return _regenerator.default.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return BABYLON.SceneLoader.LoadAssetContainerAsync("./resources/", "base.glb", scene);
+
+          case 2:
+            baseContainer = _context.sent;
+            _context.next = 5;
+            return BABYLON.SceneLoader.LoadAssetContainerAsync("./resources/", "day.glb", scene);
+
+          case 5:
+            dayContainer = _context.sent;
+            _context.next = 8;
+            return BABYLON.SceneLoader.LoadAssetContainerAsync("./resources/", "night.glb", scene);
+
+          case 8:
+            nightContainer = _context.sent;
+            _context.next = 11;
+            return BABYLON.SceneLoader.LoadAssetContainerAsync("./resources/", "sunset.glb", scene);
+
+          case 11:
+            sunsetContainer = _context.sent;
+            sceneContainers.base = baseContainer;
+            sceneContainers.day = dayContainer;
+            sceneContainers.night = nightContainer;
+            sceneContainers.sunset = sunsetContainer;
+            Object.values(sceneContainers).forEach(function (container) {
+              var meshes = container.meshes;
+              meshes.forEach(function (mesh) {
+                _lights.shadowGenerator.getShadowMap().renderList.push(mesh);
+
+                mesh.receiveShadows = true;
+              });
+              container.addAllToScene();
+              hideSceneContainer(container);
+            });
+            showSceneContainer(baseContainer);
+            showSceneContainer(sunsetContainer);
+
+          case 19:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function initScenes(_x) {
+    return _ref.apply(this, arguments);
   };
+}();
 
-  BABYLON.SceneLoader.LoadAssetContainer("./resources/", "base.glb", scene, addShadowsToMeshes); // BABYLON.SceneLoader.LoadAssetContainer(
-  //   "./resources/",
-  //   "day.glb",
-  //   scene,
-  //   addShadowsToMeshes
-  // );
-  // BABYLON.SceneLoader.LoadAssetContainer(
-  //   "./resources/",
-  //   "night.glb",
-  //   scene,
-  //   addShadowsToMeshes
-  // );
+exports.initScenes = initScenes;
 
-  BABYLON.SceneLoader.LoadAssetContainer("./resources/", "sunset.glb", scene, addShadowsToMeshes);
-  var glowLayer = new BABYLON.GlowLayer("glow", scene, {
-    mainTextureFixedSize: 256,
-    blurKernelSize: 32
-  });
-  scene.debugLayer.show();
-  return scene;
-};
-
-var initBabylonCanvas = function initBabylonCanvas() {
-  var scene = createScene();
-  engine.runRenderLoop(function () {
-    scene.render();
-  });
-  window.addEventListener("resize", function () {
-    engine.resize();
+var showSceneContainer = function showSceneContainer(container) {
+  var meshes = container.meshes;
+  meshes.forEach(function (mesh) {
+    mesh.position = new BABYLON.Vector3(0, 0, 0);
   });
 };
+
+exports.showSceneContainer = showSceneContainer;
+
+var hideSceneContainer = function hideSceneContainer(container) {
+  var meshes = container.meshes;
+  meshes.forEach(function (mesh) {
+    mesh.position = new BABYLON.Vector3(10, 10, 10);
+  });
+};
+
+exports.hideSceneContainer = hideSceneContainer;
+},{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js","babylonjs":"../node_modules/babylonjs/babylon.js","./lights":"lights.js"}],"domControls.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.initOverheadLightControl = exports.initSceneSwitchControl = void 0;
+
+var _sceneContainers = require("./sceneContainers");
+
+var _lights = require("./lights");
+
+var initSceneSwitchControl = function initSceneSwitchControl(scenes) {
+  var timesOfDay = ["sunset", "night", "day"];
+  var currentTimeIndex = 0;
+  var timeButton = document.getElementById("time");
+  timeButton.addEventListener("click", function () {
+    currentTimeIndex = (currentTimeIndex + 1) % timesOfDay.length;
+    var nextTimeOfDay = timesOfDay[currentTimeIndex];
+
+    if (nextTimeOfDay === "day") {
+      (0, _sceneContainers.hideSceneContainer)(_sceneContainers.sceneContainers.night);
+      (0, _sceneContainers.hideSceneContainer)(_sceneContainers.sceneContainers.sunset);
+      (0, _sceneContainers.showSceneContainer)(_sceneContainers.sceneContainers.day);
+
+      _lights.lightingSettings.setDay();
+    } else if (nextTimeOfDay == "sunset") {
+      (0, _sceneContainers.hideSceneContainer)(_sceneContainers.sceneContainers.night);
+      (0, _sceneContainers.showSceneContainer)(_sceneContainers.sceneContainers.sunset);
+      (0, _sceneContainers.hideSceneContainer)(_sceneContainers.sceneContainers.day);
+
+      _lights.lightingSettings.setSunset();
+    } else {
+      (0, _sceneContainers.showSceneContainer)(_sceneContainers.sceneContainers.night);
+      (0, _sceneContainers.hideSceneContainer)(_sceneContainers.sceneContainers.sunset);
+      (0, _sceneContainers.hideSceneContainer)(_sceneContainers.sceneContainers.day);
+
+      _lights.lightingSettings.setNight();
+    }
+  });
+};
+
+exports.initSceneSwitchControl = initSceneSwitchControl;
+
+var initOverheadLightControl = function initOverheadLightControl() {
+  var isOverheadLightOn = true;
+  var overHeadLightButton = document.getElementById("overheadLight");
+  overHeadLightButton.addEventListener("click", function () {
+    isOverheadLightOn = !isOverheadLightOn;
+    console.log("overhead", isOverheadLightOn);
+
+    if (isOverheadLightOn) {
+      (0, _lights.turnOverHeadLightOn)();
+    } else {
+      (0, _lights.turnOverHeadLightOff)();
+    }
+  });
+};
+
+exports.initOverheadLightControl = initOverheadLightControl;
+},{"./sceneContainers":"sceneContainers.js","./lights":"lights.js"}],"mainCanvas.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.initBabylonCanvas = void 0;
+
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
+
+var BABYLON = _interopRequireWildcard(require("babylonjs"));
+
+require("babylonjs-loaders");
+
+var _lights = require("./lights");
+
+var _sceneContainers = require("./sceneContainers");
+
+var _domControls = require("./domControls");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var canvas = document.getElementById("renderCanvas"); // Get the canvas element
+
+var engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
+
+var createScene = /*#__PURE__*/function () {
+  var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+    var scene, camera, glowLayer;
+    return _regenerator.default.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            scene = new BABYLON.Scene(engine);
+            camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, new BABYLON.Vector3(0, 0, 1), scene);
+            camera.attachControl(canvas, true);
+            (0, _lights.initLights)(scene);
+            _context.next = 6;
+            return (0, _sceneContainers.initScenes)(scene);
+
+          case 6:
+            glowLayer = new BABYLON.GlowLayer("glow", scene, {
+              mainTextureFixedSize: 256,
+              blurKernelSize: 32
+            });
+            (0, _domControls.initSceneSwitchControl)();
+            (0, _domControls.initOverheadLightControl)(); // scene.debugLayer.show();
+
+            return _context.abrupt("return", scene);
+
+          case 10:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function createScene() {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+var initBabylonCanvas = /*#__PURE__*/function () {
+  var _ref2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
+    var scene;
+    return _regenerator.default.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.next = 2;
+            return createScene();
+
+          case 2:
+            scene = _context2.sent;
+            engine.runRenderLoop(function () {
+              scene.render();
+            });
+            window.addEventListener("resize", function () {
+              engine.resize();
+            });
+
+          case 5:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+
+  return function initBabylonCanvas() {
+    return _ref2.apply(this, arguments);
+  };
+}();
 
 exports.initBabylonCanvas = initBabylonCanvas;
-},{"babylonjs":"../node_modules/babylonjs/babylon.js","babylonjs-loaders":"../node_modules/babylonjs-loaders/babylonjs.loaders.min.js"}],"C:/Users/adelruna/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js","babylonjs":"../node_modules/babylonjs/babylon.js","babylonjs-loaders":"../node_modules/babylonjs-loaders/babylonjs.loaders.min.js","./lights":"lights.js","./sceneContainers":"sceneContainers.js","./domControls":"domControls.js"}],"C:/Users/adelruna/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -1129,9 +1369,10 @@ var initAll = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            (0, _mainCanvas.initBabylonCanvas)();
+            _context.next = 2;
+            return (0, _mainCanvas.initBabylonCanvas)();
 
-          case 1:
+          case 2:
           case "end":
             return _context.stop();
         }
@@ -1173,7 +1414,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60835" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50534" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
