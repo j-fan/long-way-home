@@ -22,7 +22,7 @@ export const initLights = (scene) => {
 
   outsideLight = new BABYLON.PointLight(
     "outsideLight",
-    new BABYLON.Vector3(0, 0, -0.2),
+    new BABYLON.Vector3(0, 0, -3),
     scene
   );
 
@@ -35,7 +35,7 @@ export const initLights = (scene) => {
 
   const nightLighting = () => {
     overheadLight.diffuse = new BABYLON.Color3.FromHexString("#ad9f72");
-    outsideLight.intensity = 0.5;
+    outsideLight.intensity = 30;
     outsideLight.diffuse = new BABYLON.Color3.FromHexString("#478fed");
     scene.environmentTexture = nightHdr;
     scene.imageProcessingConfiguration.exposure = 0.1;
@@ -47,9 +47,9 @@ export const initLights = (scene) => {
   const dayLighting = () => {
     overheadLight.diffuse = new BABYLON.Color3.FromHexString("#8c8151");
     outsideLight.diffuse = new BABYLON.Color3.FromHexString("#85f2e7");
-    outsideLight.intensity = 10;
+    outsideLight.intensity = 40;
     scene.environmentTexture = dayHdr;
-    scene.imageProcessingConfiguration.exposure = 0.3;
+    scene.imageProcessingConfiguration.exposure = 0.2;
     scene.imageProcessingConfiguration.contrast = 1.0;
 
     doLightColorAnim();
@@ -58,7 +58,7 @@ export const initLights = (scene) => {
   const sunsetLighting = () => {
     overheadLight.diffuse = new BABYLON.Color3.FromHexString("#c4bdff");
     outsideLight.diffuse = new BABYLON.Color3.FromHexString("#e06234");
-    outsideLight.intensity = 10;
+    outsideLight.intensity = 60;
     scene.environmentTexture = sunsetHDR;
     scene.imageProcessingConfiguration.exposure = 0.05;
     scene.imageProcessingConfiguration.contrast = 1.0;

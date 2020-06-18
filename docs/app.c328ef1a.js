@@ -957,13 +957,13 @@ var initLights = function initLights(scene) {
   var sunsetHDR = new BABYLON.CubeTexture("img/sunset.env", scene);
   overheadLight = new BABYLON.PointLight("overheadLight", new BABYLON.Vector3(0, 0.7, 0.5), scene);
   overheadLight.intensity = 8;
-  outsideLight = new BABYLON.PointLight("outsideLight", new BABYLON.Vector3(0, 0, -0.2), scene);
+  outsideLight = new BABYLON.PointLight("outsideLight", new BABYLON.Vector3(0, 0, -3), scene);
   dirLight = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(-1, -2, -1), scene);
   dirLight.position = new BABYLON.Vector3(20, 40, 4);
 
   var nightLighting = function nightLighting() {
     overheadLight.diffuse = new BABYLON.Color3.FromHexString("#ad9f72");
-    outsideLight.intensity = 0.5;
+    outsideLight.intensity = 30;
     outsideLight.diffuse = new BABYLON.Color3.FromHexString("#478fed");
     scene.environmentTexture = nightHdr;
     scene.imageProcessingConfiguration.exposure = 0.1;
@@ -974,9 +974,9 @@ var initLights = function initLights(scene) {
   var dayLighting = function dayLighting() {
     overheadLight.diffuse = new BABYLON.Color3.FromHexString("#8c8151");
     outsideLight.diffuse = new BABYLON.Color3.FromHexString("#85f2e7");
-    outsideLight.intensity = 10;
+    outsideLight.intensity = 40;
     scene.environmentTexture = dayHdr;
-    scene.imageProcessingConfiguration.exposure = 0.3;
+    scene.imageProcessingConfiguration.exposure = 0.2;
     scene.imageProcessingConfiguration.contrast = 1.0;
     doLightColorAnim();
   };
@@ -984,7 +984,7 @@ var initLights = function initLights(scene) {
   var sunsetLighting = function sunsetLighting() {
     overheadLight.diffuse = new BABYLON.Color3.FromHexString("#c4bdff");
     outsideLight.diffuse = new BABYLON.Color3.FromHexString("#e06234");
-    outsideLight.intensity = 10;
+    outsideLight.intensity = 60;
     scene.environmentTexture = sunsetHDR;
     scene.imageProcessingConfiguration.exposure = 0.05;
     scene.imageProcessingConfiguration.contrast = 1.0;
@@ -1090,7 +1090,7 @@ var doLightColorAnim = function doLightColorAnim(light) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.hideSceneContainer = exports.showSceneContainer = exports.initScenes = exports.sceneContainers = void 0;
+exports.fadeOutSky = exports.fadeInSky = exports.hideSceneContainer = exports.showSceneContainer = exports.initScenes = exports.sceneContainers = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -1108,38 +1108,61 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var sceneContainers = {};
 exports.sceneContainers = sceneContainers;
+var sceneRef;
 
 var initScenes = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(scene) {
-    var baseContainer, dayContainer, nightContainer, sunsetContainer;
+    var baseContainer, dayContainer, nightContainer, sunsetContainer, sunsetSkyContainer, daySkyContainer, nightSkyContainer, bottomLightContainer;
     return _regenerator.default.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.next = 2;
+            sceneRef = scene;
+            _context.next = 3;
             return BABYLON.SceneLoader.LoadAssetContainerAsync("./resources/", "base.glb", scene);
 
-          case 2:
+          case 3:
             baseContainer = _context.sent;
-            _context.next = 5;
+            _context.next = 6;
             return BABYLON.SceneLoader.LoadAssetContainerAsync("./resources/", "day.glb", scene);
 
-          case 5:
+          case 6:
             dayContainer = _context.sent;
-            _context.next = 8;
+            _context.next = 9;
             return BABYLON.SceneLoader.LoadAssetContainerAsync("./resources/", "night.glb", scene);
 
-          case 8:
+          case 9:
             nightContainer = _context.sent;
-            _context.next = 11;
+            _context.next = 12;
             return BABYLON.SceneLoader.LoadAssetContainerAsync("./resources/", "sunset.glb", scene);
 
-          case 11:
+          case 12:
             sunsetContainer = _context.sent;
+            _context.next = 15;
+            return BABYLON.SceneLoader.LoadAssetContainerAsync("./resources/", "skySunset.glb", scene);
+
+          case 15:
+            sunsetSkyContainer = _context.sent;
+            _context.next = 18;
+            return BABYLON.SceneLoader.LoadAssetContainerAsync("./resources/", "skyDay.glb", scene);
+
+          case 18:
+            daySkyContainer = _context.sent;
+            _context.next = 21;
+            return BABYLON.SceneLoader.LoadAssetContainerAsync("./resources/", "skyNight.glb", scene);
+
+          case 21:
+            nightSkyContainer = _context.sent;
+            _context.next = 24;
+            return BABYLON.SceneLoader.LoadAssetContainerAsync("./resources/", "planeLight.glb", scene);
+
+          case 24:
+            bottomLightContainer = _context.sent;
             sceneContainers.base = baseContainer;
             sceneContainers.day = dayContainer;
             sceneContainers.night = nightContainer;
             sceneContainers.sunset = sunsetContainer;
+            sceneContainers.bottomLight = bottomLightContainer;
             Object.values(sceneContainers).forEach(function (container) {
               var meshes = container.meshes;
               meshes.forEach(function (mesh) {
@@ -1150,10 +1173,23 @@ var initScenes = /*#__PURE__*/function () {
               container.addAllToScene();
               hideSceneContainer(container);
             });
+            sceneContainers.sunsetSky = sunsetSkyContainer;
+            sceneContainers.sunsetSky.addAllToScene();
+            sunsetSkyContainer.meshes[1].visibility = 1;
+            addSkyTextureFadeAnim(sunsetSkyContainer.meshes[1]);
+            sceneContainers.daySky = daySkyContainer;
+            sceneContainers.daySky.addAllToScene();
+            daySkyContainer.meshes[1].visibility = 0;
+            addSkyTextureFadeAnim(daySkyContainer.meshes[1]);
+            sceneContainers.nightSky = nightSkyContainer;
+            sceneContainers.nightSky.addAllToScene();
+            nightSkyContainer.meshes[1].visibility = 0;
+            addSkyTextureFadeAnim(nightSkyContainer.meshes[1]);
             showSceneContainer(baseContainer);
+            showSceneContainer(bottomLightContainer);
             showSceneContainer(sunsetContainer);
 
-          case 19:
+          case 46:
           case "end":
             return _context.stop();
         }
@@ -1185,6 +1221,57 @@ var hideSceneContainer = function hideSceneContainer(container) {
 };
 
 exports.hideSceneContainer = hideSceneContainer;
+
+var addSkyTextureFadeAnim = function addSkyTextureFadeAnim(skyMesh) {
+  var fadeAnim = new BABYLON.Animation("fadeAnim".concat(skyMesh.id), "visibility", 30, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+  var keys = [];
+  keys.push({
+    frame: 0,
+    value: 0
+  });
+  keys.push({
+    frame: 30,
+    value: 1
+  });
+  fadeAnim.setKeys(keys);
+  skyMesh.animations.push(fadeAnim);
+};
+
+var fadeInSky = function fadeInSky(timeOfDay) {
+  var mesh;
+
+  if (timeOfDay === "day") {
+    mesh = sceneContainers.daySky.meshes[1];
+  } else if (timeOfDay === "sunset") {
+    mesh = sceneContainers.sunsetSky.meshes[1];
+  } else if (timeOfDay === "night") {
+    mesh = sceneContainers.nightSky.meshes[1];
+  } else {
+    return;
+  }
+
+  sceneRef.beginAnimation(mesh.animations[1], 0, 30, false);
+};
+
+exports.fadeInSky = fadeInSky;
+
+var fadeOutSky = function fadeOutSky(timeOfDay) {
+  var mesh;
+
+  if (timeOfDay === "day") {
+    mesh = sceneContainers.daySky.meshes[1];
+  } else if (timeOfDay === "sunset") {
+    mesh = sceneContainers.sunsetSky.meshes[1];
+  } else if (timeOfDay === "night") {
+    mesh = sceneContainers.nightSky.meshes[1];
+  } else {
+    return;
+  }
+
+  sceneRef.beginAnimation(mesh.animations[1], 30, 0, false);
+};
+
+exports.fadeOutSky = fadeOutSky;
 },{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js","babylonjs":"../node_modules/babylonjs/babylon.js","./lights":"lights.js"}],"domControls.js":[function(require,module,exports) {
 "use strict";
 
@@ -1209,18 +1296,27 @@ var initSceneSwitchControl = function initSceneSwitchControl(scenes) {
       (0, _sceneContainers.hideSceneContainer)(_sceneContainers.sceneContainers.night);
       (0, _sceneContainers.hideSceneContainer)(_sceneContainers.sceneContainers.sunset);
       (0, _sceneContainers.showSceneContainer)(_sceneContainers.sceneContainers.day);
+      (0, _sceneContainers.fadeInSky)("day");
+      (0, _sceneContainers.fadeOutSky)("sunset");
+      (0, _sceneContainers.fadeOutSky)("night");
 
       _lights.lightingSettings.setDay();
     } else if (nextTimeOfDay == "sunset") {
       (0, _sceneContainers.hideSceneContainer)(_sceneContainers.sceneContainers.night);
       (0, _sceneContainers.showSceneContainer)(_sceneContainers.sceneContainers.sunset);
       (0, _sceneContainers.hideSceneContainer)(_sceneContainers.sceneContainers.day);
+      (0, _sceneContainers.fadeInSky)("sunset");
+      (0, _sceneContainers.fadeOutSky)("day");
+      (0, _sceneContainers.fadeOutSky)("night");
 
       _lights.lightingSettings.setSunset();
     } else {
       (0, _sceneContainers.showSceneContainer)(_sceneContainers.sceneContainers.night);
       (0, _sceneContainers.hideSceneContainer)(_sceneContainers.sceneContainers.sunset);
       (0, _sceneContainers.hideSceneContainer)(_sceneContainers.sceneContainers.day);
+      (0, _sceneContainers.fadeInSky)("night");
+      (0, _sceneContainers.fadeOutSky)("sunset");
+      (0, _sceneContainers.fadeOutSky)("day");
 
       _lights.lightingSettings.setNight();
     }
@@ -1297,11 +1393,11 @@ var createScene = /*#__PURE__*/function () {
               blurKernelSize: 32
             });
             (0, _domControls.initSceneSwitchControl)();
-            (0, _domControls.initOverheadLightControl)();
-            scene.debugLayer.show();
+            (0, _domControls.initOverheadLightControl)(); // scene.debugLayer.show();
+
             return _context.abrupt("return", scene);
 
-          case 11:
+          case 10:
           case "end":
             return _context.stop();
         }
@@ -1483,7 +1579,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57561" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58189" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

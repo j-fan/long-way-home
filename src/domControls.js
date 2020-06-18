@@ -2,6 +2,8 @@ import {
   hideSceneContainer,
   sceneContainers,
   showSceneContainer,
+  fadeInSky,
+  fadeOutSky,
 } from "./sceneContainers";
 import {
   lightingSettings,
@@ -20,16 +22,25 @@ export const initSceneSwitchControl = (scenes) => {
       hideSceneContainer(sceneContainers.night);
       hideSceneContainer(sceneContainers.sunset);
       showSceneContainer(sceneContainers.day);
+      fadeInSky("day");
+      fadeOutSky("sunset");
+      fadeOutSky("night");
       lightingSettings.setDay();
     } else if (nextTimeOfDay == "sunset") {
       hideSceneContainer(sceneContainers.night);
       showSceneContainer(sceneContainers.sunset);
       hideSceneContainer(sceneContainers.day);
+      fadeInSky("sunset");
+      fadeOutSky("day");
+      fadeOutSky("night");
       lightingSettings.setSunset();
     } else {
       showSceneContainer(sceneContainers.night);
       hideSceneContainer(sceneContainers.sunset);
       hideSceneContainer(sceneContainers.day);
+      fadeInSky("night");
+      fadeOutSky("sunset");
+      fadeOutSky("day");
       lightingSettings.setNight();
     }
   });
