@@ -1223,7 +1223,7 @@ var hideSceneContainer = function hideSceneContainer(container) {
 exports.hideSceneContainer = hideSceneContainer;
 
 var addSkyTextureFadeAnim = function addSkyTextureFadeAnim(skyMesh) {
-  var fadeAnim = new BABYLON.Animation("fadeAnim".concat(skyMesh.id), "visibility", 30, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+  var fadeAnim = new BABYLON.Animation("fadeAnim".concat(skyMesh.id), "visibility", 30, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
   var keys = [];
   keys.push({
     frame: 0,
@@ -1250,7 +1250,7 @@ var fadeInSky = function fadeInSky(timeOfDay) {
     return;
   }
 
-  sceneRef.beginAnimation(mesh.animations[1], 0, 30, false);
+  sceneRef.beginAnimation(mesh, 0, 30, true);
 };
 
 exports.fadeInSky = fadeInSky;
@@ -1268,7 +1268,7 @@ var fadeOutSky = function fadeOutSky(timeOfDay) {
     return;
   }
 
-  sceneRef.beginAnimation(mesh.animations[1], 30, 0, false);
+  sceneRef.beginAnimation(mesh, 30, 0, true);
 };
 
 exports.fadeOutSky = fadeOutSky;
@@ -1579,7 +1579,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58189" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60400" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

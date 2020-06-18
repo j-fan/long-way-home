@@ -103,7 +103,7 @@ const addSkyTextureFadeAnim = (skyMesh) => {
     "visibility",
     30,
     BABYLON.Animation.ANIMATIONTYPE_FLOAT,
-    BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE
+    BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
   );
 
   let keys = [];
@@ -131,7 +131,7 @@ export const fadeInSky = (timeOfDay) => {
   } else {
     return;
   }
-  sceneRef.beginAnimation(mesh.animations[1], 0, 30, false);
+  sceneRef.beginAnimation(mesh, 0, 30, true);
 };
 export const fadeOutSky = (timeOfDay) => {
   let mesh;
@@ -144,5 +144,5 @@ export const fadeOutSky = (timeOfDay) => {
   } else {
     return;
   }
-  sceneRef.beginAnimation(mesh.animations[1], 30, 0, false);
+  sceneRef.beginAnimation(mesh, 30, 0, true);
 };
