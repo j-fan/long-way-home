@@ -86,7 +86,7 @@ const initSeatBeltControl = () => {
     if (!seatBeltButton.classList.contains("off")) {
       seatBeltSound.play();
     }
-  }, 90000);
+  }, 120000);
 };
 
 const initLoadingScreenControls = () => {
@@ -115,7 +115,6 @@ const initBackgroundSound = () => {
 };
 
 export const initDomControls = () => {
-  initBackgroundSound();
   initOverheadLightControl();
   initSceneSwitchControl();
   initAttendentControl();

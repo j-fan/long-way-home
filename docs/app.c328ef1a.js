@@ -1370,7 +1370,7 @@ var initSeatBeltControl = function initSeatBeltControl() {
     if (!seatBeltButton.classList.contains("off")) {
       seatBeltSound.play();
     }
-  }, 90000);
+  }, 120000);
 };
 
 var initLoadingScreenControls = function initLoadingScreenControls() {
@@ -1401,7 +1401,6 @@ var initBackgroundSound = function initBackgroundSound() {
 };
 
 var initDomControls = function initDomControls() {
-  initBackgroundSound();
   initOverheadLightControl();
   initSceneSwitchControl();
   initAttendentControl();
@@ -1686,7 +1685,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62483" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63815" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
