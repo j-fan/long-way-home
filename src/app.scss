@@ -33,6 +33,9 @@ body {
   transition: opacity 0.5s ease;
   pointer-events: none;
   background-image: url(img/noise.png);
+  a {
+    color: white;
+  }
   &.active {
     opacity: 1;
     pointer-events: all;
@@ -49,6 +52,10 @@ body {
       -webkit-text-fill-color: transparent;
     }
     margin: 10px;
+  }
+
+  h2 {
+    margin: 20px;
   }
 
   #continue {

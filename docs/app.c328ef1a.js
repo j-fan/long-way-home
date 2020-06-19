@@ -1491,7 +1491,6 @@ var createScene = /*#__PURE__*/function () {
 }();
 
 var resizeAndConstrainRatio = function resizeAndConstrainRatio() {
-  console.log("here");
   var winWidth = window.innerWidth;
   var winHeight = window.innerHeight;
   var currentAspectRatio = winWidth / winHeight;
@@ -1685,7 +1684,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63815" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65034" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

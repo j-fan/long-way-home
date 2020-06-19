@@ -32,6 +32,9 @@ body {
   pointer-events: none;
   background-image: url(/noise.4ceed601.png);
 }
+#loadingScreen a {
+  color: white;
+}
 #loadingScreen.active {
   opacity: 1;
   pointer-events: all;
@@ -50,6 +53,9 @@ body {
 #loadingScreen h1 .outline {
   -webkit-text-stroke: 2px white;
   -webkit-text-fill-color: transparent;
+}
+#loadingScreen h2 {
+  margin: 20px;
 }
 #loadingScreen #continue {
   opacity: 0;
