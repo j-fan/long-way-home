@@ -15,15 +15,72 @@ body {
   height: 100vh;
 }
 
+.centre-vertical {
+  display: flex;
+  justify-content: center;
+}
+
 #planeButtons {
   position: absolute;
-  width: 100%;
   display: flex;
   justify-content: space-around;
+  border: solid 1px white;
+  border-radius: 40px;
+  margin: 40px 0;
+  padding: 0 10px;
   .planeButton {
-    background-color: white;
-    min-height: 40px;
+    @media (max-width: $phone-width) {
+      margin: 6px;
+      width: 40px;
+      height: 40px;
+    }
+    margin: 10px;
+    width: 50px;
+    height: 50px;
     user-select: none;
     cursor: pointer;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: filter 500ms ease-in-out;
+  }
+  .day {
+    filter: hue-rotate(0deg);
+  }
+  .sunset {
+    filter: hue-rotate(-45deg);
+  }
+  .night {
+    filter: hue-rotate(180deg);
+  }
+  .off {
+    filter: brightness(0%);
+  }
+  #time {
+    background-image: url("img/airplanebuttons.png");
+    &:hover {
+      transform: scale(108%);
+    }
+  }
+  #attendent {
+    background-image: url("img/attendent_on.png");
+    &:hover {
+      transform: scale(108%);
+    }
+  }
+  #overheadLight {
+    background-image: url("img/indoorlight_on.png");
+    &:hover {
+      transform: scale(108%);
+    }
+  }
+  #noSmoking {
+    background-image: url("img/nosmoking.png");
+    width: 100px;
+    cursor: default;
+  }
+  #seatBelt {
+    background-image: url("img/seatBelt_on.png");
+    cursor: default;
   }
 }

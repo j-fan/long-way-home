@@ -2,10 +2,7 @@ import * as BABYLON from "babylonjs";
 import "babylonjs-loaders";
 import { initLights } from "./lights";
 import { initScenes } from "./sceneContainers";
-import {
-  initSceneSwitchControl,
-  initOverheadLightControl,
-} from "./domControls";
+import { initDomControls } from "./domControls";
 
 const canvas = document.getElementById("renderCanvas"); // Get the canvas element
 const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
@@ -31,10 +28,8 @@ const createScene = async () => {
     blurKernelSize: 32,
   });
 
-  initSceneSwitchControl();
-  initOverheadLightControl();
+  initDomControls();
   // scene.debugLayer.show();
-
   return scene;
 };
 

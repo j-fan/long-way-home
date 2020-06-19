@@ -1278,7 +1278,7 @@ exports.fadeOutSky = fadeOutSky;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.initOverheadLightControl = exports.initSceneSwitchControl = void 0;
+exports.initDomControls = void 0;
 
 var _sceneContainers = require("./sceneContainers");
 
@@ -1301,6 +1301,9 @@ var initSceneSwitchControl = function initSceneSwitchControl(scenes) {
       (0, _sceneContainers.fadeOutSky)("night");
 
       _lights.lightingSettings.setDay();
+
+      timeButton.classList.remove("night");
+      timeButton.classList.add("day");
     } else if (nextTimeOfDay == "sunset") {
       (0, _sceneContainers.hideSceneContainer)(_sceneContainers.sceneContainers.night);
       (0, _sceneContainers.showSceneContainer)(_sceneContainers.sceneContainers.sunset);
@@ -1310,6 +1313,9 @@ var initSceneSwitchControl = function initSceneSwitchControl(scenes) {
       (0, _sceneContainers.fadeOutSky)("night");
 
       _lights.lightingSettings.setSunset();
+
+      timeButton.classList.remove("day");
+      timeButton.classList.add("sunset");
     } else {
       (0, _sceneContainers.showSceneContainer)(_sceneContainers.sceneContainers.night);
       (0, _sceneContainers.hideSceneContainer)(_sceneContainers.sceneContainers.sunset);
@@ -1319,11 +1325,12 @@ var initSceneSwitchControl = function initSceneSwitchControl(scenes) {
       (0, _sceneContainers.fadeOutSky)("day");
 
       _lights.lightingSettings.setNight();
+
+      timeButton.classList.remove("sunset");
+      timeButton.classList.add("night");
     }
   });
 };
-
-exports.initSceneSwitchControl = initSceneSwitchControl;
 
 var initOverheadLightControl = function initOverheadLightControl() {
   var isOverheadLightOn = true;
@@ -1337,10 +1344,25 @@ var initOverheadLightControl = function initOverheadLightControl() {
     } else {
       (0, _lights.turnOverHeadLightOff)();
     }
+
+    overHeadLightButton.classList.toggle("off");
   });
 };
 
-exports.initOverheadLightControl = initOverheadLightControl;
+var initAttendentControl = function initAttendentControl() {
+  var attendentButton = document.getElementById("attendent");
+  attendentButton.addEventListener("click", function () {
+    attendentButton.classList.toggle("off");
+  });
+};
+
+var initDomControls = function initDomControls() {
+  initOverheadLightControl();
+  initSceneSwitchControl();
+  initAttendentControl();
+};
+
+exports.initDomControls = initDomControls;
 },{"./sceneContainers":"sceneContainers.js","./lights":"lights.js"}],"mainCanvas.js":[function(require,module,exports) {
 "use strict";
 
@@ -1392,12 +1414,11 @@ var createScene = /*#__PURE__*/function () {
               mainTextureFixedSize: 256,
               blurKernelSize: 32
             });
-            (0, _domControls.initSceneSwitchControl)();
-            (0, _domControls.initOverheadLightControl)(); // scene.debugLayer.show();
+            (0, _domControls.initDomControls)(); // scene.debugLayer.show();
 
             return _context.abrupt("return", scene);
 
-          case 10:
+          case 9:
           case "end":
             return _context.stop();
         }
@@ -1515,7 +1536,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"C:/Users/adelruna/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"app.js":[function(require,module,exports) {
+},{"./img\\airplanebuttons.png":[["airplanebuttons.8102c036.png","img/airplanebuttons.png"],"img/airplanebuttons.png"],"./img\\attendent_on.png":[["attendent_on.275e89fc.png","img/attendent_on.png"],"img/attendent_on.png"],"./img\\indoorlight_on.png":[["indoorlight_on.28ad7d73.png","img/indoorlight_on.png"],"img/indoorlight_on.png"],"./img\\nosmoking.png":[["nosmoking.57f78c75.png","img/nosmoking.png"],"img/nosmoking.png"],"./img\\seatBelt_on.png":[["seatBelt_on.6d5a8d30.png","img/seatBelt_on.png"],"img/seatBelt_on.png"],"_css_loader":"C:/Users/adelruna/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"app.js":[function(require,module,exports) {
 "use strict";
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
@@ -1579,7 +1600,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60400" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51326" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
