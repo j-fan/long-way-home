@@ -87,7 +87,7 @@ const initSeatBeltControl = () => {
     if (!seatBeltButton.classList.contains("off")) {
       seatBeltSound.play();
     }
-  }, 30000);
+  }, 90000);
 };
 
 const initSounds = () => {

@@ -1,0 +1,91 @@
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #000;
+  position: relative;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.centre-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.centre-vertical {
+  display: flex;
+  justify-content: center;
+}
+
+#planeButtons {
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  border: solid 1px white;
+  border-radius: 40px;
+  margin: 40px 0;
+  padding: 0 10px;
+}
+#planeButtons .planeButton {
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  user-select: none;
+  cursor: pointer;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: filter 500ms ease-in-out;
+}
+@media (max-width: 400px) {
+  #planeButtons .planeButton {
+    margin: 6px;
+    width: 40px;
+    height: 40px;
+  }
+}
+#planeButtons .day {
+  filter: hue-rotate(0deg);
+}
+#planeButtons .sunset {
+  filter: hue-rotate(-45deg);
+}
+#planeButtons .night {
+  filter: hue-rotate(180deg);
+}
+#planeButtons .off {
+  filter: brightness(0%);
+}
+#planeButtons #time {
+  background-image: url("/airplanebuttons.8102c036.png");
+}
+#planeButtons #time:hover {
+  transform: scale(108%);
+}
+#planeButtons #attendent {
+  background-image: url("/attendent_on.275e89fc.png");
+}
+#planeButtons #attendent:hover {
+  transform: scale(108%);
+}
+#planeButtons #overheadLight {
+  background-image: url("/indoorlight_on.28ad7d73.png");
+}
+#planeButtons #overheadLight:hover {
+  transform: scale(108%);
+}
+#planeButtons #noSmoking {
+  background-image: url("/nosmoking.57f78c75.png");
+  width: 100px;
+  cursor: default;
+}
+#planeButtons #seatBelt {
+  background-image: url("/seatBelt_on.6d5a8d30.png");
+  cursor: default;
+}
+
+/*# sourceMappingURL=/app.c328ef1a.css.map */

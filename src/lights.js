@@ -125,7 +125,7 @@ const createDirLightColorAnim = () => {
   });
   keys.push({
     frame: 30,
-    value: new BABYLON.Color3.FromHexString("#c97424"),
+    value: new BABYLON.Color3.FromHexString("#fc8332"),
   });
   keys.push({
     frame: 60,
