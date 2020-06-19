@@ -1278,14 +1278,13 @@ exports.fadeOutSky = fadeOutSky;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.initDomControls = void 0;
+exports.initDomControls = exports.setLoadingScreenReady = void 0;
 
 var _sceneContainers = require("./sceneContainers");
 
 var _lights = require("./lights");
 
 var seatBeltSound = new Audio("./sound/seatBelt.mp3");
-var rumble = new Audio("./sound/rumble.mp3");
 
 var initSceneSwitchControl = function initSceneSwitchControl() {
   var timesOfDay = ["sunset", "night", "day"];
@@ -1374,17 +1373,40 @@ var initSeatBeltControl = function initSeatBeltControl() {
   }, 90000);
 };
 
-var initSounds = function initSounds() {
+var initLoadingScreenControls = function initLoadingScreenControls() {
+  var continueButton = document.getElementById("continue");
+  var loadingScreen = document.getElementById("loadingScreen");
+  continueButton.addEventListener("click", function () {
+    loadingScreen.classList.remove("active");
+    initBackgroundSound();
+    seatBeltSound.play();
+  });
+};
+
+var setLoadingScreenReady = function setLoadingScreenReady() {
+  var status = document.getElementById("status");
+  status.innerHTML = "Welcome aboard";
+  var continueButton = document.getElementById("continue");
+  continueButton.classList.add("active");
+  var loadingIcon = document.getElementById("loadingIcon");
+  loadingIcon.classList.remove("active");
+};
+
+exports.setLoadingScreenReady = setLoadingScreenReady;
+
+var initBackgroundSound = function initBackgroundSound() {
+  var rumble = new Audio("./sound/rumble.mp3");
   rumble.loop = true;
   rumble.play();
 };
 
 var initDomControls = function initDomControls() {
-  initSounds();
+  initBackgroundSound();
   initOverheadLightControl();
   initSceneSwitchControl();
   initAttendentControl();
   initSeatBeltControl();
+  initLoadingScreenControls();
 };
 
 exports.initDomControls = initDomControls;
@@ -1504,16 +1526,17 @@ var initBabylonCanvas = /*#__PURE__*/function () {
 
           case 2:
             scene = _context2.sent;
-            engine.runRenderLoop(function () {
-              scene.render();
-            });
             resizeAndConstrainRatio();
             window.addEventListener("resize", function () {
               resizeAndConstrainRatio();
               engine.resize();
             });
+            (0, _domControls.setLoadingScreenReady)();
+            engine.runRenderLoop(function () {
+              scene.render();
+            });
 
-          case 6:
+          case 7:
           case "end":
             return _context2.stop();
         }
@@ -1599,7 +1622,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./img\\airplanebuttons.png":[["airplanebuttons.8102c036.png","img/airplanebuttons.png"],"img/airplanebuttons.png"],"./img\\attendent_on.png":[["attendent_on.275e89fc.png","img/attendent_on.png"],"img/attendent_on.png"],"./img\\indoorlight_on.png":[["indoorlight_on.28ad7d73.png","img/indoorlight_on.png"],"img/indoorlight_on.png"],"./img\\nosmoking.png":[["nosmoking.57f78c75.png","img/nosmoking.png"],"img/nosmoking.png"],"./img\\seatBelt_on.png":[["seatBelt_on.6d5a8d30.png","img/seatBelt_on.png"],"img/seatBelt_on.png"],"_css_loader":"C:/Users/adelruna/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"app.js":[function(require,module,exports) {
+},{"./img\\noise.png":[["noise.4ceed601.png","img/noise.png"],"img/noise.png"],"./img\\airplanebuttons.png":[["airplanebuttons.8102c036.png","img/airplanebuttons.png"],"img/airplanebuttons.png"],"./img\\attendent_on.png":[["attendent_on.275e89fc.png","img/attendent_on.png"],"img/attendent_on.png"],"./img\\indoorlight_on.png":[["indoorlight_on.28ad7d73.png","img/indoorlight_on.png"],"img/indoorlight_on.png"],"./img\\nosmoking.png":[["nosmoking.57f78c75.png","img/nosmoking.png"],"img/nosmoking.png"],"./img\\seatBelt_on.png":[["seatBelt_on.6d5a8d30.png","img/seatBelt_on.png"],"img/seatBelt_on.png"],"_css_loader":"C:/Users/adelruna/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"app.js":[function(require,module,exports) {
 "use strict";
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
@@ -1663,7 +1686,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55190" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62483" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,4 +1,12 @@
 $phone-width: 400px;
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
 
 body {
   margin: 0;
@@ -8,6 +16,72 @@ body {
   background-color: #000;
   position: relative;
   font-family: Helvetica, Arial, sans-serif;
+}
+
+#loadingScreen {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: #2117b0;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  background-image: url(img/noise.png);
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  h1 {
+    @media (max-width: $phone-width) {
+      font-size: 220%;
+    }
+    font-size: 8vw;
+    text-transform: uppercase;
+    font-style: italic;
+    .outline {
+      -webkit-text-stroke: 2px white;
+      -webkit-text-fill-color: transparent;
+    }
+    margin: 10px;
+  }
+
+  #continue {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    &.active {
+      opacity: 1;
+    }
+    border: 1px solid white;
+    margin: 20px auto;
+    width: 150px;
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    &:active {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+  }
+  #loadingIcon {
+    animation: rotation 2s infinite ease-in-out;
+    width: 150px;
+    height: 0px;
+    margin: 10px;
+    transition: height 0.5s ease 0.5s, opacity 0.5s ease;
+    opacity: 0;
+    &.active {
+      height: 150px;
+      opacity: 1;
+    }
+  }
 }
 
 .centre-all {
@@ -27,7 +101,7 @@ body {
   position: absolute;
   display: flex;
   justify-content: space-around;
-  border: solid 1px white;
+  border: solid 1px black;
   border-radius: 40px;
   margin: 40px 0;
   padding: 0 10px;

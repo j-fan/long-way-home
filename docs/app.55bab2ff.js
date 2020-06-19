@@ -189,7 +189,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./img\\airplanebuttons.png":[["airplanebuttons.8102c036.png","img/airplanebuttons.png"],"img/airplanebuttons.png"],"./img\\attendent_on.png":[["attendent_on.275e89fc.png","img/attendent_on.png"],"img/attendent_on.png"],"./img\\indoorlight_on.png":[["indoorlight_on.28ad7d73.png","img/indoorlight_on.png"],"img/indoorlight_on.png"],"./img\\nosmoking.png":[["nosmoking.57f78c75.png","img/nosmoking.png"],"img/nosmoking.png"],"./img\\seatBelt_on.png":[["seatBelt_on.6d5a8d30.png","img/seatBelt_on.png"],"img/seatBelt_on.png"],"_css_loader":"C:/Users/adelruna/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"C:/Users/adelruna/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./img\\noise.png":[["noise.4ceed601.png","img/noise.png"],"img/noise.png"],"./img\\airplanebuttons.png":[["airplanebuttons.8102c036.png","img/airplanebuttons.png"],"img/airplanebuttons.png"],"./img\\attendent_on.png":[["attendent_on.275e89fc.png","img/attendent_on.png"],"img/attendent_on.png"],"./img\\indoorlight_on.png":[["indoorlight_on.28ad7d73.png","img/indoorlight_on.png"],"img/indoorlight_on.png"],"./img\\nosmoking.png":[["nosmoking.57f78c75.png","img/nosmoking.png"],"img/nosmoking.png"],"./img\\seatBelt_on.png":[["seatBelt_on.6d5a8d30.png","img/seatBelt_on.png"],"img/seatBelt_on.png"],"_css_loader":"C:/Users/adelruna/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"C:/Users/adelruna/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -217,7 +217,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55190" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62483" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

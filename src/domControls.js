@@ -12,7 +12,6 @@ import {
 } from "./lights";
 
 const seatBeltSound = new Audio("./sound/seatBelt.mp3");
-const rumble = new Audio("./sound/rumble.mp3");
 
 const initSceneSwitchControl = () => {
   const timesOfDay = ["sunset", "night", "day"];
@@ -90,15 +89,36 @@ const initSeatBeltControl = () => {
   }, 90000);
 };
 
-const initSounds = () => {
+const initLoadingScreenControls = () => {
+  const continueButton = document.getElementById("continue");
+  const loadingScreen = document.getElementById("loadingScreen");
+  continueButton.addEventListener("click", () => {
+    loadingScreen.classList.remove("active");
+    initBackgroundSound();
+    seatBeltSound.play();
+  });
+};
+
+export const setLoadingScreenReady = () => {
+  const status = document.getElementById("status");
+  status.innerHTML = "Welcome aboard";
+  const continueButton = document.getElementById("continue");
+  continueButton.classList.add("active");
+  const loadingIcon = document.getElementById("loadingIcon");
+  loadingIcon.classList.remove("active");
+};
+
+const initBackgroundSound = () => {
+  const rumble = new Audio("./sound/rumble.mp3");
   rumble.loop = true;
   rumble.play();
 };
 
 export const initDomControls = () => {
-  initSounds();
+  initBackgroundSound();
   initOverheadLightControl();
   initSceneSwitchControl();
   initAttendentControl();
   initSeatBeltControl();
+  initLoadingScreenControls();
 };

@@ -2,7 +2,7 @@ import * as BABYLON from "babylonjs";
 import "babylonjs-loaders";
 import { initLights } from "./lights";
 import { initScenes } from "./sceneContainers";
-import { initDomControls } from "./domControls";
+import { initDomControls, setLoadingScreenReady } from "./domControls";
 
 const canvas = document.getElementById("renderCanvas"); // Get the canvas element
 const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
@@ -83,13 +83,14 @@ const resizeAndConstrainRatio = () => {
 
 const initBabylonCanvas = async () => {
   const scene = await createScene();
-  engine.runRenderLoop(function () {
-    scene.render();
-  });
   resizeAndConstrainRatio();
   window.addEventListener("resize", function () {
     resizeAndConstrainRatio();
     engine.resize();
+  });
+  setLoadingScreenReady();
+  engine.runRenderLoop(function () {
+    scene.render();
   });
 };
 
