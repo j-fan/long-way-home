@@ -57,7 +57,6 @@ const createScene = async () => {
 };
 
 const resizeAndConstrainRatio = () => {
-  console.log("here");
   let winWidth = window.innerWidth;
   let winHeight = window.innerHeight;
 
