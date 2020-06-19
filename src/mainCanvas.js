@@ -26,8 +26,10 @@ const createScene = async () => {
 
   const glowLayer = new BABYLON.GlowLayer("glow", scene, {
     mainTextureFixedSize: 512,
-    blurKernelSize: 32,
+    blurKernelSize: 16,
   });
+  glowLayer.intensity = 0.7;
+
   const defaultPipeline = new BABYLON.DefaultRenderingPipeline(
     "default",
     true,
@@ -49,7 +51,7 @@ const createScene = async () => {
   defaultPipeline.imageProcessing.vignetteEnabled = true;
   defaultPipeline.imageProcessing.vignetteBlendMode =
     BABYLON.ImageProcessingPostProcess.VIGNETTEMODE_MULTIPLY;
-  defaultPipeline.imageProcessing.vignetteWeight = 4;
+  defaultPipeline.imageProcessing.vignetteWeight = 2;
 
   initDomControls();
   // scene.debugLayer.show();

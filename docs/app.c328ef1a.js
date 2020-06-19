@@ -1459,8 +1459,9 @@ var createScene = /*#__PURE__*/function () {
           case 6:
             glowLayer = new BABYLON.GlowLayer("glow", scene, {
               mainTextureFixedSize: 512,
-              blurKernelSize: 32
+              blurKernelSize: 16
             });
+            glowLayer.intensity = 0.7;
             defaultPipeline = new BABYLON.DefaultRenderingPipeline("default", true, scene, [camera]);
             defaultPipeline.grainEnabled = true;
             defaultPipeline.grain.intensity = 8;
@@ -1472,12 +1473,12 @@ var createScene = /*#__PURE__*/function () {
             defaultPipeline.imageProcessing.contrast = 0.8;
             defaultPipeline.imageProcessing.vignetteEnabled = true;
             defaultPipeline.imageProcessing.vignetteBlendMode = BABYLON.ImageProcessingPostProcess.VIGNETTEMODE_MULTIPLY;
-            defaultPipeline.imageProcessing.vignetteWeight = 4;
+            defaultPipeline.imageProcessing.vignetteWeight = 2;
             (0, _domControls.initDomControls)(); // scene.debugLayer.show();
 
             return _context.abrupt("return", scene);
 
-          case 21:
+          case 22:
           case "end":
             return _context.stop();
         }
@@ -1684,7 +1685,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65340" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50497" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
