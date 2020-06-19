@@ -11,7 +11,10 @@ import {
   turnOverHeadLightOff,
 } from "./lights";
 
-const initSceneSwitchControl = (scenes) => {
+const seatBeltSound = new Audio("./sound/seatBelt.mp3");
+const rumble = new Audio("./sound/rumble.mp3");
+
+const initSceneSwitchControl = () => {
   const timesOfDay = ["sunset", "night", "day"];
   let currentTimeIndex = 0;
   const timeButton = document.getElementById("time");
@@ -71,11 +74,31 @@ const initAttendentControl = () => {
   const attendentButton = document.getElementById("attendent");
   attendentButton.addEventListener("click", () => {
     attendentButton.classList.toggle("off");
+    if (!attendentButton.classList.contains("off")) {
+      seatBeltSound.play();
+    }
   });
 };
 
+const initSeatBeltControl = () => {
+  const seatBeltButton = document.getElementById("seatBelt");
+  setInterval(() => {
+    seatBeltButton.classList.toggle("off");
+    if (!seatBeltButton.classList.contains("off")) {
+      seatBeltSound.play();
+    }
+  }, 30000);
+};
+
+const initSounds = () => {
+  rumble.loop = true;
+  rumble.play();
+};
+
 export const initDomControls = () => {
+  initSounds();
   initOverheadLightControl();
   initSceneSwitchControl();
   initAttendentControl();
+  initSeatBeltControl();
 };
