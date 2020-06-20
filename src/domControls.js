@@ -101,17 +101,41 @@ const initLoadingScreenControls = () => {
 
 export const setLoadingScreenReady = () => {
   const status = document.getElementById("status");
-  status.innerHTML = "Welcome aboard";
+  status.innerHTML = "Welcome aboard.";
   const continueButton = document.getElementById("continue");
   continueButton.classList.add("active");
   const loadingIcon = document.getElementById("loadingIcon");
   loadingIcon.classList.remove("active");
 };
 
+const iframeElement = document.querySelector("iframe");
+const soundCloudWidget = SC.Widget(iframeElement);
+
+const initSoundControl = () => {
+  const headphoneButton = document.getElementById("headphones");
+  headphoneButton.addEventListener("click", () => {
+    headphoneButton.classList.toggle("off");
+    if (headphoneButton.classList.contains("off")) {
+      soundCloudWidget.pause();
+    } else {
+      soundCloudWidget.play();
+    }
+  });
+};
+
+const initInfoControl = () => {
+  const infoButton = document.getElementById("info");
+  const soundCloudDiv = document.getElementById("soundCloud");
+  infoButton.addEventListener("click", () => {
+    soundCloudDiv.classList.toggle("hidden");
+  });
+};
+
 const initBackgroundSound = () => {
   const rumble = new Audio("./sound/interior.mp3");
   rumble.loop = true;
   rumble.play();
+  soundCloudWidget.play();
 };
 
 export const initDomControls = () => {
@@ -120,4 +144,6 @@ export const initDomControls = () => {
   initAttendentControl();
   initSeatBeltControl();
   initLoadingScreenControls();
+  initSoundControl();
+  initInfoControl();
 };

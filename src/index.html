@@ -14,13 +14,18 @@
 </head>
 
 <body>
-  <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/5qap5aO4i9A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+  <div id="info">🛈</div>
+  <div class="centre-all" style="position: absolute; pointer-events: none;">
+  <div id="soundCloud" class="hidden">
+    <iframe width="300" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/300494469&color=%23311d0e&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/chillhopdotcom" title="Chillhop Music" target="_blank" style="color: #cccccc; text-decoration: none;">Chillhop Music</a> · <a href="https://soundcloud.com/chillhopdotcom/sets/lofihiphop" title="lofi hip hop playlist" target="_blank" style="color: #cccccc; text-decoration: none;">lofi hip hop playlist</a></div>
+  </div>
+</div>
   <div id="loadingScreen" class="active">
     <div>
       <h1 id="title">
         <span class="solid">Origin</span><span class="outline">Airlines</span>
       </h1>
-      <h2>Interactive artwork by <a href="http://alvinruiyuanzhong.com">Alvin Zhong</a> and <a href="https://www.janefan.xyz">Jane Fan</a></h2>
+      <h2>Interactive artwork by <a href="http://alvinruiyuanzhong.com">Alvin Zhong</a> and <a href="https://www.janefan.xyz">Jane Fan</a><br /> This artwork contains sound.</h2>
       <img id="loadingIcon" src="img/origin.svg" class="active"></img>
       <h3 id="status">Please wait to board</h3>
       <div id="continue">Continue</div>
@@ -30,6 +35,7 @@
     <div id="planeButtons">
       <div class="planeButton sunset" id="time"></div>
       <div class="planeButton off" id="attendent"></div>
+      <div class="planeButton" id="headphones"></div>
       <div class="planeButton" id="overheadLight"></div>
       <div class="planeButton" id="noSmoking"></div>
       <div class="planeButton off" id="seatBelt"></div>
@@ -38,6 +44,7 @@
   <div class="centre-all">
     <canvas id="renderCanvas"></canvas>
   </div>
+  <script src="./soundCloudEmbed.js"></script>
   <script src="./app.js"></script>
 </body>
 

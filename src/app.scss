@@ -108,6 +108,30 @@ body {
   justify-content: center;
 }
 
+#soundCloud {
+  position: absolute;
+  opacity: 1;
+  pointer-events: all;
+  transition: opacity 0.5s ease;
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+#info {
+  color: #c2975f;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 30px;
+  margin: 10px 20px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(105%);
+  }
+}
+
 #planeButtons {
   position: absolute;
   display: flex;
@@ -119,9 +143,9 @@ body {
   box-shadow: inset 0 0 30px #c2975f;
   .planeButton {
     @media (max-width: $phone-width) {
-      margin: 6px;
-      width: 40px;
-      height: 40px;
+      margin: 4px;
+      width: 35px;
+      height: 35px;
     }
     margin: 10px;
     width: 50px;
@@ -171,5 +195,11 @@ body {
   #seatBelt {
     background-image: url("img/seatBelt_on.png");
     cursor: default;
+  }
+  #headphones {
+    background-image: url("img/headphones.png");
+    &:hover {
+      transform: scale(108%);
+    }
   }
 }

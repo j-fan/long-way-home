@@ -109,14 +109,39 @@ body {
   justify-content: center;
 }
 
+#soundCloud {
+  position: absolute;
+  opacity: 1;
+  pointer-events: all;
+  transition: opacity 0.5s ease;
+}
+#soundCloud.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#info {
+  color: #c2975f;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 30px;
+  margin: 10px 20px;
+  cursor: pointer;
+}
+#info:hover {
+  transform: scale(105%);
+}
+
 #planeButtons {
   position: absolute;
   display: flex;
   justify-content: space-around;
-  border: solid 1px black;
-  border-radius: 40px;
+  border: 4px solid #000;
+  border-radius: 10px;
   margin: 40px 0;
   padding: 0 10px;
+  box-shadow: inset 0 0 30px #c2975f;
 }
 #planeButtons .planeButton {
   margin: 10px;
@@ -131,9 +156,9 @@ body {
 }
 @media (max-width: 400px) {
   #planeButtons .planeButton {
-    margin: 6px;
-    width: 40px;
-    height: 40px;
+    margin: 4px;
+    width: 35px;
+    height: 35px;
   }
 }
 #planeButtons .day {
@@ -174,6 +199,12 @@ body {
 #planeButtons #seatBelt {
   background-image: url("/seatBelt_on.6d5a8d30.png");
   cursor: default;
+}
+#planeButtons #headphones {
+  background-image: url("/headphones.3e666dd2.png");
+}
+#planeButtons #headphones:hover {
+  transform: scale(108%);
 }
 
 /*# sourceMappingURL=/app.c328ef1a.css.map */
