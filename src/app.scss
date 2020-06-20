@@ -112,10 +112,11 @@ body {
   position: absolute;
   display: flex;
   justify-content: space-around;
-  border: solid 1px black;
-  border-radius: 40px;
+  border: 4px solid #000;
+  border-radius: 10px;
   margin: 40px 0;
   padding: 0 10px;
+  box-shadow: inset 0 0 30px #c2975f;
   .planeButton {
     @media (max-width: $phone-width) {
       margin: 6px;
