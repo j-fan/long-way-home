@@ -125,8 +125,11 @@ const initSoundControl = () => {
 
 const initInfoControl = () => {
   const infoButton = document.getElementById("info");
-  const soundCloudDiv = document.getElementById("soundCloud");
+  const soundCloudDiv = document.getElementById("soundCloudContainer");
   infoButton.addEventListener("click", () => {
+    soundCloudDiv.classList.toggle("hidden");
+  });
+  soundCloudDiv.addEventListener("click", () => {
     soundCloudDiv.classList.toggle("hidden");
   });
 };

@@ -1411,8 +1411,11 @@ var initSoundControl = function initSoundControl() {
 
 var initInfoControl = function initInfoControl() {
   var infoButton = document.getElementById("info");
-  var soundCloudDiv = document.getElementById("soundCloud");
+  var soundCloudDiv = document.getElementById("soundCloudContainer");
   infoButton.addEventListener("click", function () {
+    soundCloudDiv.classList.toggle("hidden");
+  });
+  soundCloudDiv.addEventListener("click", function () {
     soundCloudDiv.classList.toggle("hidden");
   });
 };
@@ -1711,7 +1714,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62179" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64888" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
