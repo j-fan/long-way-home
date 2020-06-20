@@ -1395,7 +1395,7 @@ var setLoadingScreenReady = function setLoadingScreenReady() {
 exports.setLoadingScreenReady = setLoadingScreenReady;
 
 var initBackgroundSound = function initBackgroundSound() {
-  var rumble = new Audio("./sound/rumble.mp3");
+  var rumble = new Audio("./sound/interior.mp3");
   rumble.loop = true;
   rumble.play();
 };
@@ -1685,7 +1685,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50497" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55472" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

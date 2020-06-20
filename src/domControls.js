@@ -109,7 +109,7 @@ export const setLoadingScreenReady = () => {
 };
 
 const initBackgroundSound = () => {
-  const rumble = new Audio("./sound/rumble.mp3");
+  const rumble = new Audio("./sound/interior.mp3");
   rumble.loop = true;
   rumble.play();
 };
