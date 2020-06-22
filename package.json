@@ -6,7 +6,7 @@
   "scripts": {
     "start": "parcel serve src/index.html --out-dir docs",
     "local": "parcel serve src/index.html --host 192.168.20.24 --https --out-dir docs",
-    "build": "parcel build src/index.html --out-dir docs",
+    "build": "parcel build src/index.html --out-dir docs --no-source-maps",
     "postbuild": "ncp ./static ./docs --filter '**/*.*'",
     "gh": "npm run build -- --public-url=./",
     "test": "echo \"Error: no test specified\" && exit 1"
